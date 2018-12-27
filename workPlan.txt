@@ -1,0 +1,26 @@
+12/26 - day 1 - 
+    - Get wireframe set
+    - Play with google maps/places api
+        1) Get the map displayed on a page
+        2) Change map directions on backend by changing lat and long
+        3) 
+
+        Final) Get it to change by inserting a city/country
+    - Review HP Lab
+    - Maybe get models ready?
+
+12/27 - day 2 -  
+
+
+12/28 - day 3 - 
+12/29 - day 4 - 
+12/30 - day 5 - 
+
+12/31 - off day
+01/01 - off day
+
+01/02 - day 6 - 
+01/03 - day 7 - 
+01/04 - day 8 - 
+
+

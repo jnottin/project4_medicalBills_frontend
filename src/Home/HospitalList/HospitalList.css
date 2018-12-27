@@ -1,0 +1,23 @@
+.hosp-grid {
+    grid-template-rows: 10% 80%;
+    grid-template-columns: auto;
+}
+
+.hosp-title {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.hosp-content {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.specific-hospital{
+    border: 2px solid #61dafb;
+    text-align: center;
+}
+
+.specific-hospital:hover {
+    background-color: black;
+}

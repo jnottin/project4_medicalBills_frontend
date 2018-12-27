@@ -1,0 +1,89 @@
+****START TOMORROW:
+    -PASSING HOSPITAL INFO AS PROPS
+    -GETTING COORDINATES TO CONVERT TO MARKERS
+
+
+
+
+
+
+Idea:
+    -app for user uploaded medical bills
+    -map api using:
+        1) Location of hospital
+        2) Price of procedure (but needs to be average of all prices in category)
+        3) 
+
+Problems with Idea:
+
+    - CONVERT USER ADDRESS TO COORDINATES - google places / geocoding
+        SOLVED - 
+            1) User fills in new hospital through GOOGLE PLACES
+        OR
+            2) GEOCODING - convert normal address to long/lat, but does not confirm that it is a hospital
+            
+    - DISPLAY HOSP / INFO ON A MAP -
+        SOLVED - using markers and google maps
+
+    - PASS DB DATA TO MYMAP FUNCTION -
+        SOLVED (I BELIEVE) - import MyMap function to views then feed in the data as a parameter
+            OR
+            - send the housed through views.py and then in the html template, filter correct houses...
+
+    - CHANGE MARKER PRICES PER PROCEDURE
+        - BASED ON - this needs to be a for loop that filters through the hospitals based on the ones that have prices for that procedure, then average those prices
+    - QUERY THROUGH HOSP ON GOOGLE PLACES - using google places API  
+    - # OF PROCEDURES - Choose 10 for now. Api for access to all procedure names?
+    - REAL INSURANCE PROVIDER - list of national insurance, option for submitting their own
+    -
+
+Models:
+    Procedure (one hospital):
+        -name_of_procedure
+        -cost
+        -insurance_provider
+        -date_of_procedure -- DATE FIGURE, like Charfield
+
+    Hospital (many procedures):
+        -name
+        -location_normal
+        -longitude
+        -latitude
+        -procedures
+
+
+App Pages:
+    1) Sign in Page
+    2) Homepage, shows nothing until user enters:
+        -procedure and zip code/city
+        -OR selects SUBMIT MEDICAL BILL
+    Then the map will show hospitals in that area that are on file. 
+
+    3) Submit Medical Bill page - enter medical bill information
+    4)
+
+
+
+MVP:
+    BRONZE:
+        -
+    
+
+
+    SILVER:
+        - DELETE MEDICAL BILL- user page, where they see the bills they uploaded and can delete them
+    
+
+
+
+    GOLD:
+        -
+
+
+FUNCTIONS:
+    -HOMEPAGE:
+        -ENTER ZIP AND PROCEDURE:
+            1) Page loads, map blank (maybe zoomed out above whole US), force PROCEDURE and ZIP/CITY alert message if they try something
+            2) Once PROCEDURE and ZIP/CITY given, 
+                -search through my database of hospitals, EITHER only show those on the google map OR zoom in on arlignton but show all hospitals
+                -show correct marker prices per procedure

@@ -1,0 +1,30 @@
+This is a link to MONGOLIAN GRILL INFO using my key: https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=mongolian%20grill&inputtype=textquery&fields=photos,formatted_address,name,opening_hours,rating&locationbias=circle:2000@47.6918452,-122.2226413&key=AIzaSyC2KMba-R4OMF2ROiKGpYGiXBpjyWFNV-4
+this asked for:
+    -
+
+The following example shows a Find Place request for "Museum of Contemporary Art Australia", including the photos, formatted_address, name, rating, opening_hours, and geometry fields: https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyC2KMba-R4OMF2ROiKGpYGiXBpjyWFNV-4
+
+Google Map: https://maps.googleapis.com/maps/api/geocode/json?latlng=77.0910,38.8816&key=AIzaSyC2KMba-R4OMF2ROiKGpYGiXBpjyWFNV-4
+
+Google Places "Witlows On Wilson": https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Witlows%On%Wilson&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyC2KMba-R4OMF2ROiKGpYGiXBpjyWFNV-4
+
+Search AppleBees in close proximity, ranked by distance: https://maps.googleapis.com/maps/api/place/autocomplete/json?types=establishment&input=applebee&radius=48280.2&rankby=distance&key=AIzaSyC2KMba-R4OMF2ROiKGpYGiXBpjyWFNV-4
+
+google place hospitals: https://maps.googleapis.com/maps/api/place/findplacefromtext/json?types=hospital&input=Virgina&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyC2KMba-R4OMF2ROiKGpYGiXBpjyWFNV-4
+
+A request for establishments containing the string "Amoeba" within an area centered in San Francisco, CA: https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Arlington&types=hospital&location=38.8799697,-77.1067698&radius=500&key=AIzaSyC2KMba-R4OMF2ROiKGpYGiXBpjyWFNV-4
+
+
+https://maps.googleapis.com/maps/api/place/autocomplete/json?input=hospital&types=establishment&location=38.8799697,-77.1067698&radius=500&key=AIzaSyC2KMba-R4OMF2ROiKGpYGiXBpjyWFNV-4
+
+
+https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=38.8799697,-77.1067698&type=hospital&radius=500&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyC2KMba-R4OMF2ROiKGpYGiXBpjyWFNV-4
+
+
+
+ GOOGLE MAP STATIC IMAGE OF ARLIGNTON
+<img
+            src=
+              'https://maps.googleapis.com/maps/api/staticmap?center=38.8799697,-77.1067698&maptype=roadmap&zoom=4&size=1400x550&key=AIzaSyC2KMba-R4OMF2ROiKGpYGiXBpjyWFNV-4'
+            alt="map of where the ISS is"
+          />
