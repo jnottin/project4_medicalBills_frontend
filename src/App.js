@@ -20,10 +20,30 @@ class App extends Component {
       },
       zoom: 14,
       location: '',
+      // showingInfoWindow: false,  //Hides or the shows the infoWindow
+      // activeMarker: {},          //Shows the active marker upon click
+      // selectedPlace: {},          //Shows the infoWindow to the selected place upon a marker
     };
     this.setMapCenter = this.setMapCenter.bind(this);
     this.setMapCenterFromLocation = this.setMapCenterFromLocation.bind(this);
   }
+
+  // onMarkerClick = (props, marker, e) =>
+  //   this.setState({
+  //     selectedPlace: props,
+  //     activeMarker: marker,
+  //     showingInfoWindow: true
+  //   });
+
+  // onClose = props => {
+  //   if (this.state.showingInfoWindow) {
+  //     this.setState({
+  //       showingInfoWindow: false,
+  //       activeMarker: null
+  //     });
+  //   }
+  // };
+
   componentDidMount() {
     console.log("component did mount")
     axios
@@ -121,7 +141,13 @@ class App extends Component {
                   zoom={this.state.zoom}
                   setMapCenter={this.setMapCenter}
                   location={this.state.location}
-                  hospitals={this.state.hospitals}
+                //Trying to connect HospList and Map
+                // showingInfoWindow={this.state.showingInfoWindow}
+                // setMapCenter={this.setMapCenter}
+                // activeMarker={this.state.activeMarker}
+                // selectedPlace={this.state.selectedPlace}
+                // onMarkerClick={this.onMarkerClick}
+                // onClose={this.onClose}
                 />
               )}
             />

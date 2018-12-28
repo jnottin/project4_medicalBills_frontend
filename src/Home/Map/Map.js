@@ -32,6 +32,16 @@ export class MapContainer extends Component {
                 },
             ]
         };
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
+
+    handleInputChange(e) {
+        const target = e.target;
+        const name = target.name;
+        const value = target.type === "checkbox" ? target.checked : target.value;
+        this.setState({
+            [name]: value
+        });
     }
 
     onMarkerClick = (props, marker, e) =>
@@ -84,6 +94,7 @@ export class MapContainer extends Component {
 
                         )
                     })}
+                    {/* INFOWINDOW IS CONSTANT FOR ALL MARKERS, ONLY NEEDS ONE */}
                     <InfoWindow
                         marker={this.state.activeMarker}
                         visible={this.state.showingInfoWindow}
@@ -91,8 +102,7 @@ export class MapContainer extends Component {
                     >
                         <div>
                             <h4>{this.state.selectedPlace.name}</h4>
-                            {/* FIGURE OUT WHAT IS GOING ON ABOVE */}
-                            {/* <h4>Cost: ${this.state.selectedPlace.cost}</h4> */}
+                            <h4>Cost: ${this.state.selectedPlace.cost}</h4>
                         </div>
                     </InfoWindow>
                 </Map>
