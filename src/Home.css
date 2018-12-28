@@ -1,0 +1,60 @@
+body {
+  background-color: #282c34;
+  color: #61dafb;
+}
+
+.all-content {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.grid {
+  width: 90%;
+  margin: 0 auto;
+  border: 2px solid #61dafb;
+  display: grid;
+  grid-template-rows: 700px; 
+  grid-template-columns: 30% 70%; 
+  /* justify-items: center; */
+}
+
+.hosp-col {
+  border: 2px solid #61dafb;
+  grid-row: 1;
+  grid-column: 1;
+  overflow:auto;
+}
+
+.map-col {
+  border: 2px solid #61dafb;
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.navBar {
+  margin: 0 auto;
+  width: 90%;
+  background: #61dafb;
+  color: black;
+  margin-bottom: 5px;
+  padding: 0;
+}
+
+.navBar-map-item {
+
+}
+
+
+form {
+  margin: 10px;
+  padding: 10px;
+  display: inline;
+}
+
+.submit-new-bill-btn {
+  font-size: 20px;
+  
+}
+.submit-new-bill-link {
+  text-decoration: none;
+}

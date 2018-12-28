@@ -5,3 +5,8 @@
 .location-searched {
     text-align: center;
 }
+
+.infoWindow {
+    color: black;
+    font-size: 15px;
+}

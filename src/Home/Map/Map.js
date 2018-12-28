@@ -14,22 +14,6 @@ export class MapContainer extends Component {
             showingInfoWindow: false,  //Hides or the shows the infoWindow
             activeMarker: {},          //Shows the active marker upon click
             selectedPlace: {},          //Shows the infoWindow to the selected place upon a marker
-            markerObjects: [
-                {
-                    id: 1,
-                    name: 'Arlington Hospital',
-                    lng: 38.88845,
-                    lat: -77.1272,
-                    cost: 2000
-                },
-                {
-                    id: 2,
-                    name: 'Witlows On Wilson',
-                    lng: 38.8885,
-                    lat: -77.0931,
-                    cost: 2000
-                },
-            ]
         };
         this.handleInputChange = this.handleInputChange.bind(this);
     }
@@ -98,7 +82,7 @@ export class MapContainer extends Component {
                         onClose={this.onClose}
                     >
                         <div>
-                            <h4>{this.state.selectedPlace.name}</h4>
+                            <h4 className="infoWindow">{this.state.selectedPlace.name}</h4>
                         </div>
                     </InfoWindow>
                 </Map>
