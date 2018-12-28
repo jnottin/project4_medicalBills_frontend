@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './HospitalList.css';
-import axios from "axios";
-
 
 
 class HospitalList extends Component {
@@ -19,13 +17,19 @@ class HospitalList extends Component {
     }
 
     render() {
-        const hospitals = this.props.hospitals.map(hospital => {
+        const hospitalsProp = this.props.hospitals
+        function sortHospByLowestCost() {
+            hospitalsProp.sort(function (a, b) { return a.cost - b.cost });
+        }
+        sortHospByLowestCost()
+        const hospitals = hospitalsProp.map(hospital => {
             return (
                 <div key={hospital._id} className="specific-hospital">
                     <h3>{hospital.name}</h3>
                     <h4>Address: {hospital.address}</h4>
                     <h4>Latitude: {hospital.lat}</h4>
                     <h4>Longitude: {hospital.long}</h4>
+                    <h4>Cost: ${hospital.cost}</h4>
                 </div>
             );
         });

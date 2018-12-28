@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import Geocode from "react-geocode";
 import './App.css';
 import Header from './Home/Header/Header.js'
 import HospitalList from './Home/HospitalList/HospitalList.js'
 import MapContainer from './Home/Map/Map.js'
 import axios from "axios";
+
+Geocode.setApiKey("AIzaSyC2KMba-R4OMF2ROiKGpYGiXBpjyWFNV-4");
 
 class App extends Component {
   constructor(props) {
@@ -12,13 +15,14 @@ class App extends Component {
     this.state = {
       hospitals: [],
       userCoordinates: {
-        lat: 38.8816,
-        lng: -77.0910
+        lat: 38.8885,
+        lng: -77.0931
       },
-
+      zoom: 14,
+      location: '',
     };
-    this.handleInputChange = this.handleInputChange.bind(this);
     this.setMapCenter = this.setMapCenter.bind(this);
+    this.setMapCenterFromLocation = this.setMapCenterFromLocation.bind(this);
   }
   componentDidMount() {
     console.log("component did mount")
@@ -42,19 +46,35 @@ class App extends Component {
       userCoordinates: {
         lat: parseFloat(this.lat.value),
         lng: parseFloat(this.lng.value),
-      }
+      },
+      zoom: 14,
     })
     console.log(this.state.userCoordinates)
+    console.log(this.state.zoom)
   }
 
-  handleInputChange(e) {
-    const target = e.target;
-    const name = target.name;
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    this.setState({
-      [name]: value
-    });
+  setMapCenterFromLocation(event) {
+    event.preventDefault();
+    this.setState({ location: this.location.value })
+    // console.log(this.state.location)
+    Geocode.fromAddress(this.state.location).then(
+      response => {
+        const { lat, lng } = response.results[0].geometry.location;
+        console.log(lat, lng);
+        this.setState({
+          userCoordinates: {
+            lat: lat,
+            lng: lng,
+          },
+        })
+      },
+      error => {
+        console.error(error);
+        alert(error)
+      }
+    );
   }
+
 
   render() {
     return (
@@ -85,34 +105,23 @@ class App extends Component {
               </label>
               <input type="submit" value="Submit" />
             </form>
-            {/*<div className="input">
-              <label htmlFor=""> Latitude:
-                    <input
-                  type="text"
-                  name="Latitude"
-                  value={this.state.userCoordinates.lat}
-                  onChange={this.handleInputChange}
-                  placeholder="Latitude"
-                />
+            <form onSubmit={this.setMapCenterFromLocation}>
+              <label>
+                Give address and see on map
+            <input type="text" ref={el => this.location = el} />
               </label>
-              <label htmlFor="Longitude"> Longitude:
-                    <input
-                  type="text"
-                  name="Longitude"
-                  value={this.state.userCoordinates.lng}
-                  onChange={this.handleInputChange}
-                  placeholder="Longitude"
-                />
-              </label>
-              <button onClick={this.setMapCenter}>submit</button>
-            </div> */}
+              <input type="submit" value="Submit" />
+            </form>
             <Route
               path="/"
               render={props => (
                 <MapContainer
                   {...props}
                   userCoordinates={this.state.userCoordinates}
+                  zoom={this.state.zoom}
                   setMapCenter={this.setMapCenter}
+                  location={this.state.location}
+                  hospitals={this.state.hospitals}
                 />
               )}
             />

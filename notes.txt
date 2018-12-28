@@ -1,8 +1,11 @@
 ****START TOMORROW:
     XXXXX-PASSING HOSPITAL INFO AS PROPS
-    -Convert input to map COORDINATES
-    -GETTING COORDINATES TO CONVERT TO MARKERS
+    XXXXX-Convert input to map COORDINATES
+    XXXXXXX-GETTING COORDINATES TO CONVERT TO MARKERS
+    -Get Markers to inflate when list item is hovered
+    -Google Places convert to coordinates / OR find where user is
     -WORK ON NEW MEDICAL BILL PAGE , GOOGLE MAPS PLACES TO WORK
+    -SORTING HOSPITAL LIST - closest vicinity then lowest price. closest take geolocation of user, subtract take overall diff of hospital long/lat and sort by lowest difference.
 
 
 
