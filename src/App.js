@@ -141,6 +141,7 @@ class App extends Component {
                   zoom={this.state.zoom}
                   setMapCenter={this.setMapCenter}
                   location={this.state.location}
+                  hospitals={this.state.hospitals}
                 //Trying to connect HospList and Map
                 // showingInfoWindow={this.state.showingInfoWindow}
                 // setMapCenter={this.setMapCenter}

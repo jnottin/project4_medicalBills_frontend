@@ -7,7 +7,6 @@ const mapStyles = {
     height: '80%'
 };
 
-// STOP GOING BAKC
 export class MapContainer extends Component {
     constructor(props) {
         super(props);
@@ -79,8 +78,8 @@ export class MapContainer extends Component {
                         lat: this.props.userCoordinates.lat,
                         lng: this.props.userCoordinates.lng
                     }}
+
                 >
-                    {/* WORKING ON SHOWING ALL MARKERS FOR HOSPITALS */}
                     {this.props.hospitals.map((hospital) => {
                         console.log(hospital)
                         return (
@@ -91,22 +90,19 @@ export class MapContainer extends Component {
                                 position={{ lat: hospital.lat, lng: hospital.lng }}
                             >
                             </Marker>
-
                         )
                     })}
-                    {/* INFOWINDOW IS CONSTANT FOR ALL MARKERS, ONLY NEEDS ONE */}
-                    <InfoWindow
+                    < InfoWindow
                         marker={this.state.activeMarker}
                         visible={this.state.showingInfoWindow}
                         onClose={this.onClose}
                     >
                         <div>
                             <h4>{this.state.selectedPlace.name}</h4>
-                            <h4>Cost: ${this.state.selectedPlace.cost}</h4>
                         </div>
                     </InfoWindow>
                 </Map>
-            </div>
+            </div >
         );
     }
 }
