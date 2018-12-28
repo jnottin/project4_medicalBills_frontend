@@ -6,6 +6,7 @@ import Header from './Home/Header/Header.js'
 import HospitalList from './Home/HospitalList/HospitalList.js'
 import MapContainer from './Home/Map/Map.js'
 import axios from "axios";
+import NewMedicalBill from './Home/NewMedicalBill/NewMedicalBill';
 
 Geocode.setApiKey("AIzaSyC2KMba-R4OMF2ROiKGpYGiXBpjyWFNV-4");
 
@@ -20,29 +21,11 @@ class App extends Component {
       },
       zoom: 14,
       location: '',
-      // showingInfoWindow: false,  //Hides or the shows the infoWindow
-      // activeMarker: {},          //Shows the active marker upon click
-      // selectedPlace: {},          //Shows the infoWindow to the selected place upon a marker
     };
     this.setMapCenter = this.setMapCenter.bind(this);
     this.setMapCenterFromLocation = this.setMapCenterFromLocation.bind(this);
   }
 
-  // onMarkerClick = (props, marker, e) =>
-  //   this.setState({
-  //     selectedPlace: props,
-  //     activeMarker: marker,
-  //     showingInfoWindow: true
-  //   });
-
-  // onClose = props => {
-  //   if (this.state.showingInfoWindow) {
-  //     this.setState({
-  //       showingInfoWindow: false,
-  //       activeMarker: null
-  //     });
-  //   }
-  // };
 
   componentDidMount() {
     console.log("component did mount")
@@ -100,7 +83,8 @@ class App extends Component {
     return (
       <div className="all-content">
         <Header />
-        {/*  MAKE NAV BAR WITH ZIP/PROCEDURE HERE TO PASS DOWN TO MAP/HOSPITAL LIST*/}
+        <a href="/submitCost">Submit New Medical Bill</a>
+        <Route path="/submitCost" exact component={NewMedicalBill} />
         <div className="grid">
           <div className="hosp-col">
             <Route
@@ -142,13 +126,6 @@ class App extends Component {
                   setMapCenter={this.setMapCenter}
                   location={this.state.location}
                   hospitals={this.state.hospitals}
-                //Trying to connect HospList and Map
-                // showingInfoWindow={this.state.showingInfoWindow}
-                // setMapCenter={this.setMapCenter}
-                // activeMarker={this.state.activeMarker}
-                // selectedPlace={this.state.selectedPlace}
-                // onMarkerClick={this.onMarkerClick}
-                // onClose={this.onClose}
                 />
               )}
             />
