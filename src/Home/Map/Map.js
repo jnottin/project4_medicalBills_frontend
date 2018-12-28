@@ -6,7 +6,7 @@ const mapStyles = {
     width: '60%',
     height: '80%'
 };
-
+// STOP GOING BAKC
 export class MapContainer extends Component {
     constructor(props) {
         super(props);
@@ -14,10 +14,10 @@ export class MapContainer extends Component {
             showingInfoWindow: false,  //Hides or the shows the infoWindow
             activeMarker: {},          //Shows the active marker upon click
             selectedPlace: {},          //Shows the infoWindow to the selected place upon a marker
-            userCoordinates: {
-                lat: 38.8816,
-                lng: -77.0910
-            },
+            // userCoordinates: {
+            //     lat: 38.8816,
+            //     lng: -77.0910
+            // },
             markerObjects: [
                 {
                     id: 1,
@@ -35,8 +35,29 @@ export class MapContainer extends Component {
                 },
             ]
         };
+        this.handleInputChange = this.handleInputChange.bind(this);
+        // this.setMapCenter = this.setMapCenter.bind(this);
     }
 
+
+    // setMapCenter() {
+    //     this.setState({
+    //         userCoordinates: {
+    //             lat: 40.8816,
+    //             lng: -77.0910
+    //         }
+    //     })
+    //     console.log(this.state.userCoordinates)
+    // }
+
+    handleInputChange(e) {
+        const target = e.target;
+        const name = target.name;
+        const value = target.type === "checkbox" ? target.checked : target.value;
+        this.setState({
+            [name]: value
+        });
+    }
 
     onMarkerClick = (props, marker, e) =>
         this.setState({
@@ -54,18 +75,19 @@ export class MapContainer extends Component {
         }
     };
 
+
     render() {
         const google = window.google;
         return (
             <div>
-                <h2>Map</h2>
+                <h2 className="map-title">Map</h2>
                 <Map
                     google={this.props.google}
                     zoom={14}
                     style={mapStyles}
                     initialCenter={{
-                        lat: this.state.userCoordinates.lat,
-                        lng: this.state.userCoordinates.lng
+                        lat: this.props.userCoordinates.lat,
+                        lng: this.props.userCoordinates.lng
                     }}
                 >
                     {/* WORKING ON SHOWING ALL MARKERS FOR HOSPITALS */}

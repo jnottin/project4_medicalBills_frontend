@@ -8,26 +8,18 @@ class HospitalList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            hospitals: [],
+            hospitalName: 'Hospital List TEST',
         };
+        this.setHospitalNameWithSubmit = this.setHospitalNameWithSubmit.bind(this);
     }
-    componentDidMount() {
-        console.log("component did mount")
-        axios
-            // .get("http://roomkind.herokuapp.com/api/roomKind")
-            .get("http://localhost:3010/api/hospitals")
-            .then(res => {
-                this.setState({
-                    hospitals: res.data
-                });
-            })
 
-            .catch(err => {
-                console.log(err);
-            });
+    setHospitalNameWithSubmit(event) {
+        event.preventDefault();
+        this.setState({ hospitalName: this.element.value });
     }
+
     render() {
-        const hospitals = this.state.hospitals.map(hospital => {
+        const hospitals = this.props.hospitals.map(hospital => {
             return (
                 <div key={hospital._id} className="specific-hospital">
                     <h3>{hospital.name}</h3>
@@ -40,7 +32,16 @@ class HospitalList extends Component {
 
         return (
             <div className="hosp-grid">
-                <h2 className="hosp-title">Hospital List</h2>
+                <form onSubmit={this.setHospitalNameWithSubmit}>
+                    <label>
+                        Name:
+            <input type="text" ref={el => this.element = el} />
+                    </label>
+                    <input type="submit" value="Submit" />
+                </form>
+                <div>
+                    <h2 className="hosp-title">{this.state.hospitalName}</h2>
+                </div>
                 <div className="hosp-content">{hospitals}</div>
             </div>
         );

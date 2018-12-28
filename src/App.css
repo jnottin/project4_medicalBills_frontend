@@ -3,6 +3,11 @@ body {
   color: #61dafb;
 }
 
+.all-content {
+  width: 100%;
+  margin: 0 auto;
+}
+
 .grid {
   width: 90%;
   margin: 0 auto;
