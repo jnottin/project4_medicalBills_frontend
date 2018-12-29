@@ -101,6 +101,7 @@ class Home extends Component {
             <input type="submit" value="Submit" />
           </form>
           <button className="submit-new-bill-btn"><a className="submit-new-bill-link" href="/submitCost">Submit New Medical Bill</a></button>
+          <button className="submit-new-bill-btn"><a className="submit-new-bill-link" href="/testAuto">test autocomplete</a></button>
         </nav>
         <div className="grid">
           <div className="hosp-col">

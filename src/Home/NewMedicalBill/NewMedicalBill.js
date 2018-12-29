@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./NewMedicalBill.css";
+import { Redirect } from 'react-router'
 
 class NewMedicalBill extends Component {
     constructor(props) {
@@ -11,6 +12,8 @@ class NewMedicalBill extends Component {
             lng: "",
             lat: "",
             cost: "",
+            name_of_procedure: "",
+            redirect: false,
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -37,10 +40,14 @@ class NewMedicalBill extends Component {
                 lng: this.state.lng,
                 lat: this.state.lat,
                 cost: this.state.cost,
+                name_of_procedure: this.state.name_of_procedure
                 // procedures: [Procedure],
             })
             .then(res => {
+                console.log("res");
                 console.log(res);
+                this.setState({ redirect: true });
+                console.log(this.state.redirect);
             })
             .catch(err => {
                 console.log(err);
@@ -48,6 +55,10 @@ class NewMedicalBill extends Component {
     }
 
     render() {
+        if (this.state.redirect === true) {
+            return <Redirect to='/' />
+        }
+
         return (
             <div id="newResidenceForm" className="closed newResidenceForm">
                 <h1>New Medical Bill</h1>
@@ -101,6 +112,16 @@ class NewMedicalBill extends Component {
                             value={this.state.cost}
                             onChange={this.handleInputChange}
                             placeholder="Cost of Procedure"
+                        />
+                    </p>
+                    <p>
+                        <label htmlFor="name_of_procedure">Name of Procedure</label> <br />
+                        <input
+                            type="text"
+                            name="name_of_procedure"
+                            value={this.state.name_of_procedure}
+                            onChange={this.handleInputChange}
+                            placeholder="name_of_procedure of Procedure"
                         />
                     </p>
                     <p>
