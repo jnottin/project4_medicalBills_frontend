@@ -6,7 +6,7 @@ class HospitalList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            hospitalName: 'Hospital List TEST',
+            hospitalName: 'Hospital List',
         };
         this.setHospitalNameWithSubmit = this.setHospitalNameWithSubmit.bind(this);
     }
@@ -29,7 +29,7 @@ class HospitalList extends Component {
                     <h3>({index.toString()}) - {hospital.name}</h3>
                     <h4>Address: {hospital.address}</h4>
                     <h4>Latitude: {hospital.lat}</h4>
-                    <h4>Longitude: {hospital.long}</h4>
+                    <h4>Longitude: {hospital.lng}</h4>
                     <h4>Cost: ${hospital.cost}</h4>
                 </div>
             );

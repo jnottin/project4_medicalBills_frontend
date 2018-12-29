@@ -15,28 +15,31 @@ const searchOptions = {
 class LocationSearchInput extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { address: '' };
+        this.state = { geoAdress: '' };
     }
 
-    handleChange = address => {
-        this.setState({ address });
+    handleChange = geoAdress => {
+        this.setState({ geoAdress });
     };
 
-    handleSelect = address => {
-        console.log(address)
-        geocodeByAddress(address)
+    handleSelect = geoAdress => {
+        console.log(geoAdress)
+        document.getElementById("autoCompleteInput").innerText = geoAdress;
+        geocodeByAddress(geoAdress)
             .then(results => getLatLng(results[0]))
             .then(latLng => console.log('Success', latLng))
             .catch(error => console.error('Error', error));
+
     };
 
     render() {
         return (
             <PlacesAutocomplete
-                value={this.state.address}
+                value={this.state.geoAdress}
                 onChange={this.handleChange}
                 onSelect={this.handleSelect}
                 searchOptions={searchOptions}
+
             >
                 {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                     <div>

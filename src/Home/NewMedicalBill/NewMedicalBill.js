@@ -2,6 +2,18 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./NewMedicalBill.css";
 import { Redirect } from 'react-router'
+import PlacesAutocomplete, {
+    geocodeByAddress,
+    getLatLng,
+} from 'react-places-autocomplete';
+
+const google = window.google;
+
+const searchOptions = {
+    location: new google.maps.LatLng(38.8885, -77.0931),
+    radius: 200000000,
+    // types: ['hospital']
+}
 
 class NewMedicalBill extends Component {
     constructor(props) {
@@ -11,13 +23,48 @@ class NewMedicalBill extends Component {
             address: "",
             lng: "",
             lat: "",
-            cost: "",
             name_of_procedure: "",
+            cost: "",
+            insurance_provider: "",
+            date_of_procedure: "",
             redirect: false,
+            geoAddress: ''
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
+        this.showAutoInput = this.showAutoInput.bind(this);
+    }
+
+    handleChange = geoAddress => {
+        this.setState({ geoAddress });
+    };
+
+    handleSelect = geoAddress => {
+        console.log(geoAddress)
+        document.getElementById("autoCompleteSelected").innerText = "Hospital selected: " + geoAddress;
+        document.getElementById("autoCompleteInput").style.display = 'none';
+        document.getElementById("editHospSelected").style.display = 'inline';
+
+        this.setState({
+            name: geoAddress
+        })
+        geocodeByAddress(geoAddress)
+            .then(results => getLatLng(results[0]))
+            .then(latLng => {
+                console.log('Success', latLng)
+                this.setState({
+                    lat: latLng.lat,
+                    lng: latLng.lng
+                })
+            })
+            .catch(error => console.error('Error', error));
+    };
+
+    showAutoInput() {
+        document.getElementById("autoCompleteInput").style.display = 'block';
+        document.getElementById("autoCompleteSelected").innerText = "Name of Hospital Where Procedure Took Place";
+        document.getElementById("editHospSelected").style.display = 'none';
     }
 
     handleInputChange(e) {
@@ -39,15 +86,16 @@ class NewMedicalBill extends Component {
                 address: this.state.address,
                 lng: this.state.lng,
                 lat: this.state.lat,
+                name_of_procedure: this.state.name_of_procedure,
                 cost: this.state.cost,
-                name_of_procedure: this.state.name_of_procedure
+                insurance_provider: this.state.insurance_provider,
+                date_of_procedure: this.state.date_of_procedure,
                 // procedures: [Procedure],
             })
             .then(res => {
                 console.log("res");
                 console.log(res);
                 this.setState({ redirect: true });
-                console.log(this.state.redirect);
             })
             .catch(err => {
                 console.log(err);
@@ -62,46 +110,58 @@ class NewMedicalBill extends Component {
         return (
             <div id="newResidenceForm" className="closed newResidenceForm">
                 <h1>New Medical Bill</h1>
-                <form className="newBookResidence" onSubmit={this.handleFormSubmit}>
+                <label htmlFor="name" id="autoCompleteSelected">Name of Hospital Where Procedure Took Place</label> <br />
+                <PlacesAutocomplete
+                    value={this.state.geoAddress}
+                    onChange={this.handleChange}
+                    onSelect={this.handleSelect}
+                    searchOptions={searchOptions}
+                >
+                    {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                        <div>
+                            <input id='autoCompleteInput'
+                                {...getInputProps({
+                                    placeholder: 'Search Places ...',
+                                    className: 'location-search-input',
+                                })}
+                            />
+                            <button id="editHospSelected" onClick={this.showAutoInput}>Edit Hospital Selected</button>
+                            <div className="autocomplete-dropdown-container">
+                                {loading && <div>Loading...</div>}
+                                {suggestions.map(suggestion => {
+                                    const className = suggestion.active
+                                        ? 'suggestion-item--active'
+                                        : 'suggestion-item';
+                                    // inline style for demonstration purpose
+                                    const style = suggestion.active
+                                        ? { backgroundColor: 'black' }
+                                        : { backgroundColor: 'white' };
+
+                                    return (
+                                        <div
+                                            {...getSuggestionItemProps(suggestion, {
+                                                className,
+                                                style,
+                                            })}
+                                        >
+                                            <div>{suggestion.formattedSuggestion.mainText}</div>
+                                            <div>{suggestion.formattedSuggestion.secondaryText}</div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    )}
+                </PlacesAutocomplete>
+                <form onSubmit={this.handleFormSubmit}>
                     <p>
-                        <label htmlFor="name">Name of Hospital</label> <br />
+                        <label htmlFor="name_of_procedure">Name of Procedure</label> <br />
                         <input
                             type="text"
-                            name="name"
-                            value={this.state.name}
+                            name="name_of_procedure"
+                            value={this.state.name_of_procedure}
                             onChange={this.handleInputChange}
-                            placeholder="Name of Hospital"
-                        />
-                    </p>
-                    <p>
-                        <label htmlFor="address">Address Of Hospital</label> <br />
-                        <input
-                            type="text"
-                            name="address"
-                            value={this.state.address}
-                            onChange={this.handleInputChange}
-                            placeholder="address of Hospital"
-                        />
-                    </p>
-                    {/* HOW TO DO LOCATION? WITH GEOCODE OF ADDRESS? GOOGLE PLACES? */}
-                    <p>
-                        <label htmlFor="Latitude">Latitude</label> <br />
-                        <input
-                            type="number"
-                            name="lat"
-                            value={this.state.lat}
-                            onChange={this.handleInputChange}
-                            placeholder="latitude"
-                        />
-                    </p>
-                    <p>
-                        <label htmlFor="longitude">Longitude</label> <br />
-                        <input
-                            type="number"
-                            name="lng"
-                            value={this.state.lng}
-                            onChange={this.handleInputChange}
-                            placeholder="longitude"
+                            placeholder="Name of Procedure"
                         />
                     </p>
                     <p>
@@ -115,13 +175,23 @@ class NewMedicalBill extends Component {
                         />
                     </p>
                     <p>
-                        <label htmlFor="name_of_procedure">Name of Procedure</label> <br />
+                        <label htmlFor="insurance_provider">Insurance Provider</label> <br />
                         <input
                             type="text"
-                            name="name_of_procedure"
-                            value={this.state.name_of_procedure}
+                            name="insurance_provider"
+                            value={this.state.insurance_provider}
                             onChange={this.handleInputChange}
-                            placeholder="name_of_procedure of Procedure"
+                            placeholder="Insurance Provider"
+                        />
+                    </p>
+                    <p>
+                        <label htmlFor="date_of_procedure">Date of Procedure</label> <br />
+                        <input
+                            type="date"
+                            name="date_of_procedure"
+                            value={this.state.date}
+                            onChange={this.handleInputChange}
+                            placeholder="Date of Procedure"
                         />
                     </p>
                     <p>

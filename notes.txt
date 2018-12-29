@@ -1,5 +1,7 @@
 ****Problem on Map.js page index.js:1446 You have included the Google Maps JavaScript API multiple times on this page. This may cause unexpected errors.
 
+***** Search only works after second time pressing enter
+
 
 ****START TOMORROW:
     XXXXX-PASSING HOSPITAL INFO AS PROPS
@@ -8,14 +10,17 @@
     XXXXXXX-Google Places convert to coordinates / OR find where user is
     XXXXXXX-After post, get redirect working
 
+
+
     -WORK ON NEW MEDICAL BILL PAGE , GOOGLE MAPS PLACES TO WORK
         -Filter google search by type hospital
-        -Separate Name of hospital and address from google automcomplete search
-        -Show google autocomplete search that is selected in the input box
+        splice by first comma ***ALMOST JUST NEED TO GET ADDRESS/NAME SEPARATE-Separate Name of hospital and address from google autocomplete search
+        XXXXXXX-Show google autocomplete search that is selected in the input box
 
     -Get Procedures model to work
         -Needs to create new Hospital if that one is not in DB, otherwise add procedure to that hospital
         -Need to get push to work, otherwise the insert works
+
     -Get Average cost per procedure to show
         -Average calculation in frontend with procedure
         XXXXXXX-drop down menu per procedure in frontend for loop checking for all procedures in DB
