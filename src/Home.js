@@ -19,7 +19,7 @@ class Home extends Component {
         lat: 38.8885,
         lng: -77.0931
       },
-      zoom: 14,
+      zoom: 12,
       location: '',
     };
     this.setMapCenter = this.setMapCenter.bind(this);
@@ -28,7 +28,6 @@ class Home extends Component {
 
 
   componentDidMount() {
-    console.log("component did mount")
     axios
       // .get("http://roomkind.herokuapp.com/api/roomKind")
       .get("http://localhost:3010/api/hospitals")
@@ -61,7 +60,7 @@ class Home extends Component {
         lat: parseFloat(this.lat.value),
         lng: parseFloat(this.lng.value),
       },
-      zoom: 14,
+      zoom: 12,
     })
     console.log(this.state.userCoordinates)
     console.log(this.state.zoom)
@@ -91,27 +90,31 @@ class Home extends Component {
 
 
   render() {
-    //   const hospitals = hospitalsProp.map(hospital => {
-    //     return (
-    //         <div key={hospital._id} className="specific-hospital">
-    //             <h3>{hospital.name}</h3>
-    //             <h4>Address: {hospital.address}</h4>
-    //             <h4>Latitude: {hospital.lat}</h4>
-    //             <h4>Longitude: {hospital.long}</h4>
-    //             <h4>Cost: ${hospital.cost}</h4>
-    //         </div>
-    //     );
-    // });
+    const proceduresList = this.state.procedures
+
+    //TRYING TO SORT PROCEDURES ALPHABETICALLY
+    // const procedures = this.state.procedures
+    // const proceduresList = procedures.filter(procedure => procedure.name_of_procedure)
+    // function sortProceduresAlpha() {
+    //   proceduresList.sort();
+    //   console.log(proceduresList)
+    // }
+    // sortProceduresAlpha()
+
+    proceduresList.map(procedure => {
+      var select = document.getElementById("procedure-dropdn")
+      var option = document.createElement('option');
+      option.text = option.value = procedure.name_of_procedure;
+      select.add(option);
+    });
 
     return (
       <div className="all-content">
         <nav className="navBar">
           <form onSubmit={this.setMapCenterFromLocation}>
-            <select name="cars">
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="fiat">Fiat</option>
-              <option value="audi">Audi</option>
+            <select name="cars" id="procedure-dropdn">
+              <option value="Select A Procedure">Select A Procedure</option>
+              <option value="Select A Procedure">All Procedures</option>
             </select>
             <input type="submit" value="Submit" />
           </form>
@@ -122,8 +125,6 @@ class Home extends Component {
             </label>
             <input type="submit" value="Submit" />
           </form>
-
-
           <button className="submit-new-bill-btn"><a className="submit-new-bill-link" href="/submitCost">Submit New Medical Bill</a></button>
           <button className="submit-new-bill-btn"><a className="submit-new-bill-link" href="/testAuto">test autocomplete</a></button>
         </nav>

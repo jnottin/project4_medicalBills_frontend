@@ -64,7 +64,9 @@ export class MapContainer extends Component {
                     }}
 
                 >
-                    {this.props.hospitals.map((hospital) => {
+                    {this.props.hospitals.map((hospital, i) => {
+                        const index = i + 1;
+
                         console.log(hospital)
                         return (
                             <Marker
@@ -72,6 +74,7 @@ export class MapContainer extends Component {
                                 onClick={this.onMarkerClick}
                                 name={hospital.name}
                                 position={{ lat: hospital.lat, lng: hospital.lng }}
+                                label={index.toString()}
                             >
                             </Marker>
                         )

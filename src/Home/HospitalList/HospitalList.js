@@ -22,10 +22,11 @@ class HospitalList extends Component {
             hospitalsProp.sort(function (a, b) { return a.cost - b.cost });
         }
         sortHospByLowestCost()
-        const hospitals = hospitalsProp.map(hospital => {
+        const hospitals = this.props.hospitals.map((hospital, i) => {
+            const index = i + 1;
             return (
                 <div key={hospital._id} className="specific-hospital">
-                    <h3>{hospital.name}</h3>
+                    <h3>({index.toString()}) - {hospital.name}</h3>
                     <h4>Address: {hospital.address}</h4>
                     <h4>Latitude: {hospital.lat}</h4>
                     <h4>Longitude: {hospital.long}</h4>
