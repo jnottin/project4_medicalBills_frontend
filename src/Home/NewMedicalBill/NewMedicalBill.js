@@ -55,9 +55,9 @@ class NewMedicalBill extends Component {
     }
 
     render() {
-        if (this.state.redirect === true) {
-            return <Redirect to='/' />
-        }
+        // if (this.state.redirect === true) {
+        //     return <Redirect to='/' />
+        // }
 
         return (
             <div id="newResidenceForm" className="closed newResidenceForm">

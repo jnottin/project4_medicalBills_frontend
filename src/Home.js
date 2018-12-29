@@ -14,6 +14,7 @@ class Home extends Component {
     super(props);
     this.state = {
       hospitals: [],
+      procedures: [],
       userCoordinates: {
         lat: 38.8885,
         lng: -77.0931
@@ -37,6 +38,17 @@ class Home extends Component {
         });
       })
 
+      .catch(err => {
+        console.log(err);
+      });
+    axios
+      // .get("http://roomkind.herokuapp.com/api/roomKind")
+      .get("http://localhost:3010/api/procedures")
+      .then(res => {
+        this.setState({
+          procedures: res.data
+        });
+      })
       .catch(err => {
         console.log(err);
       });
@@ -79,18 +91,28 @@ class Home extends Component {
 
 
   render() {
+    //   const hospitals = hospitalsProp.map(hospital => {
+    //     return (
+    //         <div key={hospital._id} className="specific-hospital">
+    //             <h3>{hospital.name}</h3>
+    //             <h4>Address: {hospital.address}</h4>
+    //             <h4>Latitude: {hospital.lat}</h4>
+    //             <h4>Longitude: {hospital.long}</h4>
+    //             <h4>Cost: ${hospital.cost}</h4>
+    //         </div>
+    //     );
+    // });
+
     return (
       <div className="all-content">
         <nav className="navBar">
-          <form onSubmit={this.setMapCenter}>
-            <label>
-              Latitude
-            <input type="text" ref={el => this.lat = el} />
-            </label>
-            <label>
-              Longitude
-            <input type="text" ref={el => this.lng = el} />
-            </label>
+          <form onSubmit={this.setMapCenterFromLocation}>
+            <select name="cars">
+              <option value="volvo">Volvo</option>
+              <option value="saab">Saab</option>
+              <option value="fiat">Fiat</option>
+              <option value="audi">Audi</option>
+            </select>
             <input type="submit" value="Submit" />
           </form>
           <form onSubmit={this.setMapCenterFromLocation}>
@@ -100,6 +122,8 @@ class Home extends Component {
             </label>
             <input type="submit" value="Submit" />
           </form>
+
+
           <button className="submit-new-bill-btn"><a className="submit-new-bill-link" href="/submitCost">Submit New Medical Bill</a></button>
           <button className="submit-new-bill-btn"><a className="submit-new-bill-link" href="/testAuto">test autocomplete</a></button>
         </nav>
