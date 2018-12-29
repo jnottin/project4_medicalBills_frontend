@@ -63,10 +63,8 @@ class LocationSearchInput extends React.Component {
                                             style,
                                         })}
                                     >
-                                        <span>{suggestion.description}</span>
                                         <div>{suggestion.formattedSuggestion.mainText}</div>
                                         <div>{suggestion.formattedSuggestion.secondaryText}</div>
-                                        <div>{suggestion.types}</div>
                                     </div>
                                 );
                             })}
