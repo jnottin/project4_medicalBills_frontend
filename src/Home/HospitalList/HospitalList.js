@@ -8,12 +8,6 @@ class HospitalList extends Component {
         this.state = {
             hospitalName: 'Hospital List',
         };
-        this.setHospitalNameWithSubmit = this.setHospitalNameWithSubmit.bind(this);
-    }
-
-    setHospitalNameWithSubmit(event) {
-        event.preventDefault();
-        this.setState({ hospitalName: this.element.value });
     }
 
     render() {
@@ -22,7 +16,29 @@ class HospitalList extends Component {
             hospitalsProp.sort(function (a, b) { return a.cost - b.cost });
         }
         sortHospByLowestCost()
+
+
+
+        var arrayOfProcedures = []
+
         const hospitals = this.props.hospitals.map((hospital, i) => {
+            var hospital_procedures = hospital.hospital_procedures
+            // if (hospital_procedures.length > 0) {
+            //     for (var i = 0; i < hospital.procedures.length; i++) {
+            //         arrayOfProcedures.push(hospital.procedures.name_of_procedure)
+            //     }
+            //     console.log(arrayOfProcedures)
+            //     const index = i + 1;
+            //     return (
+            //         <div key={hospital._id} className="specific-hospital">
+            //             <h3>({index.toString()}) - {hospital.name}</h3>
+            //             <h4>Address: {hospital.address}</h4>
+            //             <h4>Latitude: {hospital.lat}</h4>
+            //             <h4>Longitude: {hospital.lng}</h4>
+            //             <h4>Cost: ${hospital.cost}</h4>
+            //         </div>
+            //     );
+            // } else {
             const index = i + 1;
             return (
                 <div key={hospital._id} className="specific-hospital">
@@ -33,17 +49,11 @@ class HospitalList extends Component {
                     <h4>Cost: ${hospital.cost}</h4>
                 </div>
             );
+            // }
         });
 
         return (
-            <div className="hosp-grid">
-                <form onSubmit={this.setHospitalNameWithSubmit}>
-                    <label>
-                        Name:
-            <input type="text" ref={el => this.element = el} />
-                    </label>
-                    <input type="submit" value="Submit" />
-                </form>
+            <div className="hosp-grid" >
                 <div>
                     <h2 className="hosp-title">{this.state.hospitalName}</h2>
                 </div>

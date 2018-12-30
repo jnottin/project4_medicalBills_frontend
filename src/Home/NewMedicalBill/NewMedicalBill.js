@@ -11,8 +11,8 @@ const google = window.google;
 
 const searchOptions = {
     location: new google.maps.LatLng(38.8885, -77.0931),
-    radius: 200000000,
-    // types: ['hospital']
+    radius: 2000,
+    // types: ['address']
 }
 
 class NewMedicalBill extends Component {
@@ -146,6 +146,7 @@ class NewMedicalBill extends Component {
                                         >
                                             <div>{suggestion.formattedSuggestion.mainText}</div>
                                             <div>{suggestion.formattedSuggestion.secondaryText}</div>
+                                            <div>{suggestion.address}</div>
                                         </div>
                                     );
                                 })}

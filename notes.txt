@@ -1,6 +1,7 @@
 ****Problem on Map.js page index.js:1446 You have included the Google Maps JavaScript API multiple times on this page. This may cause unexpected errors.
 
 ***** Search only works after second time pressing enter
+****ON CLOSE INFOWINDOW, updates to current location, i think i need e.preventDefault
 
 
 ****START TOMORROW:
@@ -13,7 +14,6 @@
 
 
     -WORK ON NEW MEDICAL BILL PAGE , GOOGLE MAPS PLACES TO WORK
-        -Filter google search by type hospital
         splice by first comma ***ALMOST JUST NEED TO GET ADDRESS/NAME SEPARATE-Separate Name of hospital and address from google autocomplete search
         XXXXXXX-Show google autocomplete search that is selected in the input box
 

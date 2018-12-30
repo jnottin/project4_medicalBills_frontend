@@ -67,7 +67,7 @@ export class MapContainer extends Component {
                     {this.props.hospitals.map((hospital, i) => {
                         const index = i + 1;
 
-                        console.log(hospital)
+                        // console.log(hospital)
                         return (
                             <Marker
                                 key={hospital._id}

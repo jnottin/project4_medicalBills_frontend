@@ -107,7 +107,7 @@ class Home extends Component {
       option.text = option.value = procedure.name_of_procedure;
       select.add(option);
     });
-
+    // if (typeof residence != "undefined") {
     return (
       <div className="all-content">
         <nav className="navBar">
@@ -158,6 +158,13 @@ class Home extends Component {
         </div>
       </div >
     );
+    // } else {
+    //   return (
+    //     <div>
+    //       <h1>Not Loaded Yet</h1>
+    //     </div>
+    //   );
+    // }
   }
 }
 
