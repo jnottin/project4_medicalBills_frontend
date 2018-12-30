@@ -1,6 +1,7 @@
 ****Problem on Map.js page index.js:1446 You have included the Google Maps JavaScript API multiple times on this page. This may cause unexpected errors.
 
 ***** Search only works after second time pressing enter
+***** SELECTING PROCEDURE ALSO
 ****ON CLOSE INFOWINDOW, updates to current location, i think i need e.preventDefault
 
 

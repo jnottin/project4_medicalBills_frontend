@@ -24,7 +24,7 @@ class NewMedicalBill extends Component {
             lng: "",
             lat: "",
             cost: "",
-            appendectomy_cost: '',
+            procedure_selected: '',
             redirect: false,
             geoAddress: ''
         };
@@ -32,6 +32,7 @@ class NewMedicalBill extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.showAutoInput = this.showAutoInput.bind(this);
+        this.handleChangeDropdown = this.handleChangeDropdown.bind(this);
     }
 
     handleChange = geoAddress => {
@@ -43,9 +44,12 @@ class NewMedicalBill extends Component {
         document.getElementById("autoCompleteSelected").innerText = "Hospital selected: " + geoAddress;
         document.getElementById("autoCompleteInput").style.display = 'none';
         document.getElementById("editHospSelected").style.display = 'inline';
-
+        var indexOfComma = geoAddress.indexOf(',')
+        var nameFromGeoAdd = geoAddress.slice(0, indexOfComma)
+        var addressFromGeoAdd = geoAddress.slice(indexOfComma + 2, -1)
         this.setState({
-            name: geoAddress
+            name: nameFromGeoAdd,
+            address: addressFromGeoAdd
         })
         geocodeByAddress(geoAddress)
             .then(results => getLatLng(results[0]))
@@ -75,8 +79,13 @@ class NewMedicalBill extends Component {
         });
     }
 
+    handleChangeDropdown(event) {
+        this.setState({ procedure_selected: event.target.value });
+    }
+
     handleFormSubmit(event) {
-        console.log(this.state.appendectomy_cost)
+        console.log(this.state.procedure_selected)
+        // console.log(this.state.name)
         event.preventDefault();
         axios
             //   .post("http://roomkind.herokuapp.com/project3roomKind/residences", {
@@ -86,7 +95,7 @@ class NewMedicalBill extends Component {
                 lng: this.state.lng,
                 lat: this.state.lat,
                 cost: this.state.cost,
-
+                procedure: this.state.procedure_selected
             })
             .then(res => {
                 console.log("res");
@@ -150,11 +159,13 @@ class NewMedicalBill extends Component {
                         </div>
                     )}
                 </PlacesAutocomplete>
+
                 <form onSubmit={this.handleFormSubmit}>
                     <p>
-                        <label htmlFor="name_of_procedure">Type of Procedure</label> <br />
-                        <select name="Select Procedure" id="">
-                            <option value={this.state.appendectomy_cost}>Appendectomy</option>
+                        <label htmlFor="typeOfProcedure">Type of Procedure</label> <br />
+                        <select name="typeOfProcedure" onChange={this.handleChangeDropdown} value={this.state.value} id="procedure-dropdn">
+                            <option value="Select A Procedure">Select A Procedure</option>
+                            <option value="appendectomy_cost">Appendectomy</option>
                             <option value="breast_biopsy_cost">Breast Biopsy</option>
                             <option value="carotid_endarterectomy_cost">Carotid Endarterectomy</option>
                             <option value="cataract_surgery_cost">Cataract Surgery</option>
@@ -176,32 +187,8 @@ class NewMedicalBill extends Component {
                             placeholder="Cost of Procedure"
                         />
                     </p>
-                    <p>
-                        <label htmlFor="insurance_provider">Insurance Provider</label> <br />
-                        <input
-                            type="text"
-                            name="insurance_provider"
-                            value={this.state.insurance_provider}
-                            onChange={this.handleInputChange}
-                            placeholder="Insurance Provider"
-                        />
-                    </p>
-                    <p>
-                        <label htmlFor="date_of_procedure">Date of Procedure</label> <br />
-                        <input
-                            type="date"
-                            name="date_of_procedure"
-                            value={this.state.date}
-                            onChange={this.handleInputChange}
-                            placeholder="Date of Procedure"
-                        />
-                    </p>
-                    <p>
-                        <button type="submit" onClick={this.handleFormSubmit}>
-                            Submit
-            </button>
-                        {/* <button type="submit" onClick={() => { this.props.createResidence(this.state) }}>Submit</button> */}
-                    </p>
+
+                    <input type="submit" value="Submit" />
                 </form>
             </div>
         );

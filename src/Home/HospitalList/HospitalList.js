@@ -10,6 +10,7 @@ class HospitalList extends Component {
         };
     }
 
+
     render() {
         const hospitalsProp = this.props.hospitals
         function sortHospByLowestCost() {
@@ -42,7 +43,7 @@ class HospitalList extends Component {
                     total_appendectomy_cost += hospital.appendectomy_cost[i];
                 }
                 var avg_appendectomy_cost_dol = total_appendectomy_cost / hospital.appendectomy_cost.length;
-                var avg_appendectomy_cost = '$' + avg_appendectomy_cost_dol.toString()
+                var avg_appendectomy_cost = avg_appendectomy_cost_dol.toString()
             }
 
             if (hospital.cataract_surgery_cost.length === 0) {
