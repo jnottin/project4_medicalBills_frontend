@@ -14,7 +14,6 @@ class Home extends Component {
     super(props);
     this.state = {
       hospitals: [],
-      procedures: [],
       userCoordinates: {
         lat: 38.8885,
         lng: -77.0931
@@ -37,17 +36,6 @@ class Home extends Component {
         });
       })
 
-      .catch(err => {
-        console.log(err);
-      });
-    axios
-      // .get("http://roomkind.herokuapp.com/api/roomKind")
-      .get("http://localhost:3010/api/procedures")
-      .then(res => {
-        this.setState({
-          procedures: res.data
-        });
-      })
       .catch(err => {
         console.log(err);
       });
@@ -90,31 +78,25 @@ class Home extends Component {
 
 
   render() {
-    const proceduresList = this.state.procedures
 
-    //TRYING TO SORT PROCEDURES ALPHABETICALLY
-    // const procedures = this.state.procedures
-    // const proceduresList = procedures.filter(procedure => procedure.name_of_procedure)
-    // function sortProceduresAlpha() {
-    //   proceduresList.sort();
-    //   console.log(proceduresList)
-    // }
-    // sortProceduresAlpha()
-
-    proceduresList.map(procedure => {
-      var select = document.getElementById("procedure-dropdn")
-      var option = document.createElement('option');
-      option.text = option.value = procedure.name_of_procedure;
-      select.add(option);
-    });
     // if (typeof residence != "undefined") {
+
     return (
       <div className="all-content">
         <nav className="navBar">
           <form onSubmit={this.setMapCenterFromLocation}>
             <select name="cars" id="procedure-dropdn">
               <option value="Select A Procedure">Select A Procedure</option>
-              <option value="Select A Procedure">All Procedures</option>
+              <option value="appendectomy_cost">Appendectomy</option>
+              <option value="breast_biopsy_cost">Breast Biopsy</option>
+              <option value="carotid_endarterectomy_cost">Carotid Endarterectomy</option>
+              <option value="cataract_surgery_cost">Cataract Surgery</option>
+              <option value="cesarean_section_cost">Cesarean Section</option>
+              <option value="coronary_artery_bypass_cost">Coronary Artery Bypass</option>
+              <option value="debridement_of_wound_cost">Debridement of Wound</option>
+              <option value="free_skin_graft_cost">Free Skin Graft</option>
+              <option value="spinal_fusion_cost">Spinal Fusion</option>
+              <option value="total_hip_replacement_cost">Total Hip Replacement</option>
             </select>
             <input type="submit" value="Submit" />
           </form>

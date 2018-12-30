@@ -23,10 +23,8 @@ class NewMedicalBill extends Component {
             address: "",
             lng: "",
             lat: "",
-            name_of_procedure: "",
             cost: "",
-            insurance_provider: "",
-            date_of_procedure: "",
+            appendectomy_cost: '',
             redirect: false,
             geoAddress: ''
         };
@@ -78,6 +76,7 @@ class NewMedicalBill extends Component {
     }
 
     handleFormSubmit(event) {
+        console.log(this.state.appendectomy_cost)
         event.preventDefault();
         axios
             //   .post("http://roomkind.herokuapp.com/project3roomKind/residences", {
@@ -86,11 +85,8 @@ class NewMedicalBill extends Component {
                 address: this.state.address,
                 lng: this.state.lng,
                 lat: this.state.lat,
-                name_of_procedure: this.state.name_of_procedure,
                 cost: this.state.cost,
-                insurance_provider: this.state.insurance_provider,
-                date_of_procedure: this.state.date_of_procedure,
-                // procedures: [Procedure],
+
             })
             .then(res => {
                 console.log("res");
@@ -156,14 +152,19 @@ class NewMedicalBill extends Component {
                 </PlacesAutocomplete>
                 <form onSubmit={this.handleFormSubmit}>
                     <p>
-                        <label htmlFor="name_of_procedure">Name of Procedure</label> <br />
-                        <input
-                            type="text"
-                            name="name_of_procedure"
-                            value={this.state.name_of_procedure}
-                            onChange={this.handleInputChange}
-                            placeholder="Name of Procedure"
-                        />
+                        <label htmlFor="name_of_procedure">Type of Procedure</label> <br />
+                        <select name="Select Procedure" id="">
+                            <option value={this.state.appendectomy_cost}>Appendectomy</option>
+                            <option value="breast_biopsy_cost">Breast Biopsy</option>
+                            <option value="carotid_endarterectomy_cost">Carotid Endarterectomy</option>
+                            <option value="cataract_surgery_cost">Cataract Surgery</option>
+                            <option value="cesarean_section_cost">Cesarean Section</option>
+                            <option value="coronary_artery_bypass_cost">Coronary Artery Bypass</option>
+                            <option value="debridement_of_wound_cost">Debridement of Wound</option>
+                            <option value="free_skin_graft_cost">Free Skin Graft</option>
+                            <option value="spinal_fusion_cost">Spinal Fusion</option>
+                            <option value="total_hip_replacement_cost">Total Hip Replacement</option>
+                        </select>
                     </p>
                     <p>
                         <label htmlFor="cost">Cost of Procedure</label> <br />
