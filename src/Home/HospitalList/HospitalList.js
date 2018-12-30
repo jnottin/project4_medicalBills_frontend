@@ -18,7 +18,6 @@ class HospitalList extends Component {
         }
         sortHospByLowestCost()
 
-
         const hospitals = this.props.hospitals.map((hospital, ind) => {
             // // var proceduresList = ["appendectomy_cost", "carotid_endarterectomy_cost",
             // //     "coronary_artery_bypass_cost", "total_hip_replacement_cost", "cesarean_section_cost", "free_skin_graft_cost",
@@ -134,6 +133,11 @@ class HospitalList extends Component {
                 }
                 var avg_debridement_of_wound_cost = total_debridement_of_wound_cost / hospital.debridement_of_wound_cost.length;
             }
+
+            // var currentHospital = {
+            //     avg_breast_biopsy_cost : avg_breast_biopsy_cost,
+
+            // }
 
             const index = ind + 1;
             return (

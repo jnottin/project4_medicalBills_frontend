@@ -138,6 +138,7 @@ class Home extends Component {
                 <HospitalList
                   {...props}
                   hospitals={this.state.hospitals}
+                  procedure_selected_sort={this.state.procedure_selected_sort}
                 />
               )}
             />
