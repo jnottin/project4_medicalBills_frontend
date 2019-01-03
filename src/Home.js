@@ -5,6 +5,7 @@ import './Home.css';
 import HospitalList from './Home/HospitalList/HospitalList.js'
 import MapContainer from './Home/Map/Map.js'
 import About from './Home/About/About.js'
+import Footer from './Home/Footer/Footer.js'
 import axios from "axios";
 
 
@@ -162,6 +163,7 @@ class Home extends Component {
             />
           </div>
         </div>
+        <Footer />
       </div >
     );
     // } else {

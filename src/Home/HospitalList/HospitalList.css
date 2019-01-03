@@ -10,7 +10,6 @@
     text-align: center;
     font-size: 30px;
     text-shadow: 2px 2px 4px #000000;
-    /* border: 2px solid red; */
 }
 
 .hospital-address {
@@ -20,7 +19,6 @@
 .hosp-content {
     grid-column: 1;
     grid-row: 2;
-    /* border: 2px solid red; */
 }
 
 .specific-hospital{
