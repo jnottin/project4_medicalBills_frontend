@@ -67,6 +67,49 @@ class Home extends Component {
   }
 
   setMapCenterFromLocation(event) {
+
+    //in your code you are saying you want to select a map location after selecting a procedure
+    // you should only be setting a map location after selecting a location
+    // just because you have selected a procedure doesn't mean that a a location is also selected
+
+    /* 
+
+      you are using the same function on both submit buttons 
+
+        <form onSubmit={this.setMapCenterFromLocation}>
+            <select name="cars" id="procedure-dropdn">
+              <option value="Select A Procedure">Select A Procedure</option>
+              <option value="Select A Procedure">All Procedures</option>
+            </select>
+            <input type="submit" value="Submit" />
+          </form>
+          <form onSubmit={this.setMapCenterFromLocation}>
+            <label>
+
+          
+
+    */
+
+    // in the UI it isn't clear what work flow the user needs to get the application to work
+    // do you click the locations on the left hand side, do you have to type in a new location,
+    // chrome is giving you errors telling you that your map may not work properly because you have
+    // included multiple google maps
+
+//     You have included the Google Maps JavaScript API multiple times on this page. This may cause unexpected errors.
+// function.console.(anonymous function) @ index.js:1446
+// rh @ js?key=AIzaSyC2KMba-R4OMF2ROiKGpYGiXBpjyWFNV-4&callback=loaderCB01546531082638&libraries=places&v=3&language=en:132
+// zh @ js?key=AIzaSyC2KMba-R4OMF2ROiKGpYGiXBpjyWFNV-4&callback=loaderCB01546531082638&libraries=places&v=3&language=en:130
+// google.maps.Load @ js?key=AIzaSyC2KMba-R4OMF2ROiKGpYGiXBpjyWFNV-4&callback=loaderCB01546531082638&libraries=places&v=3&language=en:21
+// (anonymous) @ js?key=AIzaSyC2KMba-R4OMF2ROiKGpYGiXBpjyWFNV-4&callback=loaderCB01546531082638&libraries=places&v=3&language=en:210
+// (anonymous) @ js?key=AIzaSyC2KMba-R4OMF2ROiKGpYGiXBpjyWFNV-4&callback=loaderCB01546531082638&libraries=places&v=3&language=en:210
+// 10:58:03.371 
+
+
+// when I was using the map it would jump to one location, the location of the thing that I searched before. it seemed to be a search
+// behind.
+
+
+
     event.preventDefault();
     this.setState({ location: this.location.value })
     // console.log(this.state.location)
