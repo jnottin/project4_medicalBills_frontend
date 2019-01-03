@@ -14,11 +14,7 @@ body {
   background-size: cover;
 }
 
-.fixed-para-divider {
-  height:300px;
-  /* box-shadow: 0 0 20px white; */
-  background-color: white;
-}
+
 
 .all-content {
   width: 100%;
@@ -52,22 +48,17 @@ body {
 
 .navBar {
   border-radius: 15px;
+  font-size:25px;
+  border: 3px outset white;
   margin: 0 auto;
   width: 87.5%;
-  background: white;
-  color: black;
+  background: #4d5466;
+  color: white;
   margin-bottom: 5px;
   padding: 20px;
-}
-
-.we-do-title {
-  font-size: 40px;
-  text-align: center;
-  margin-top: 50px;
-  color: white;
-  background-color: #282c34;
   text-shadow: 2px 2px 4px #000000;
 }
+
 
 
 .about-grid {

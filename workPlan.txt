@@ -24,3 +24,6 @@
 01/04 - day 8 - 
 
 
+
+mongodb://user1:password1@ds047468.mlab.com:47468/medishare
+heroku config:set MLAB_URL=mongodb://user1:password1@ds047468.mlab.com:47468/medishare

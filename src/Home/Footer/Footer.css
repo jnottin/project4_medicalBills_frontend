@@ -1,8 +1,7 @@
 .footer-nav-ul {
-    background-color: black;
+    background-color: #4d5466;
     list-style-type: none;
-    margin: 0;
+    margin-top: 100px;
     padding: 0;
     overflow: hidden;
-    background-color: #282c34;
 }

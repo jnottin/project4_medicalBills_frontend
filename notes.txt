@@ -2,7 +2,6 @@
 
 ***** Search only works after second time pressing enter, SELECTING PROCEDURE ALSO
 ***** Averagemethod needs to work
-**** Submit new procedure should be added to hospital or create new one
 ****ON CLOSE INFOWINDOW, updates to current location, i think i need e.preventDefault
 
 
@@ -12,6 +11,7 @@
     XXXXXXX-GETTING COORDINATES TO CONVERT TO MARKERS
     XXXXXXX-Google Places convert to coordinates / OR find where user is
     XXXXXXX-After post, get redirect working
+    XXXXXXXXXX Submit new procedure should be added to hospital or create new one
 
 
 

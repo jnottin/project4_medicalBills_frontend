@@ -21,7 +21,7 @@ class Header extends Component {
                     <li><a className="nav-item" href="/#search-near-you">Find Costs Near You</a></li>
                     <li><a className="header-title" href="/">Medi-Share</a></li>
                     <li><a className="nav-item submit-new" href="/submitCost">Submit Your Own Medical Bill</a></li>
-                    <li><img src='https://i.imgur.com/sfcnr2e.png' alt="Heart Logo" className="logo" /></li>
+                    {/* <li><img src='https://i.imgur.com/sfcnr2e.png' alt="Heart Logo" className="logo" /></li> */}
                 </ul>
             </div>
         );

@@ -42,7 +42,7 @@ class NewMedicalBill extends Component {
 
     handleSelect = geoAddress => {
         console.log(geoAddress)
-        document.getElementById("autoCompleteSelected").innerText = "Hospital selected: " + geoAddress;
+        document.getElementById("autoCompleteSelected").innerText = "Hospital Selected: " + geoAddress;
         document.getElementById("autoCompleteInput").style.display = 'none';
         document.getElementById("editHospSelected").style.display = 'inline';
         var indexOfComma = geoAddress.indexOf(',')
@@ -65,8 +65,8 @@ class NewMedicalBill extends Component {
     };
 
     showAutoInput() {
-        document.getElementById("autoCompleteInput").style.display = 'block';
-        document.getElementById("autoCompleteSelected").innerText = "Name of Hospital Where Procedure Took Place";
+        document.getElementById("autoCompleteInput").style.display = 'inline';
+        document.getElementById("autoCompleteSelected").innerText = "Name of Hospital Where Procedure Took Place: ";
         document.getElementById("editHospSelected").style.display = 'none';
     }
 
@@ -89,7 +89,7 @@ class NewMedicalBill extends Component {
         // console.log(this.state.name)
         event.preventDefault();
         axios
-            //   .post("http://roomkind.herokuapp.com/project3roomKind/residences", {
+            // .post("https://medishareapp.herokuapp.com/newMedicalBill", {
             .post("http://localhost:3010/newMedicalBill", {
                 name: this.state.name,
                 address: this.state.address,
@@ -114,9 +114,9 @@ class NewMedicalBill extends Component {
         // }
 
         return (
-            <div id="newResidenceForm" className="closed newResidenceForm">
-                <h1>New Medical Bill</h1>
-                <label htmlFor="name" id="autoCompleteSelected">Name of Hospital Where Procedure Took Place</label> <br />
+            <div className="newMedicalBill-content">
+                <h1 className="newMedicalBill-title">New Medical Bill</h1>
+                <label className="newBill-label" htmlFor="name" id="autoCompleteSelected">Name of Hospital Where Procedure Took Place: </label> <br />
                 <PlacesAutocomplete
                     value={this.state.geoAddress}
                     onChange={this.handleChange}
@@ -140,8 +140,8 @@ class NewMedicalBill extends Component {
                                         : 'suggestion-item';
                                     // inline style for demonstration purpose
                                     const style = suggestion.active
-                                        ? { backgroundColor: 'black' }
-                                        : { backgroundColor: 'white' };
+                                        ? { backgroundColor: '#424857' }
+                                        : { backgroundColor: '#636c83' };
 
                                     return (
                                         <div
@@ -162,8 +162,8 @@ class NewMedicalBill extends Component {
                 </PlacesAutocomplete>
 
                 <form onSubmit={this.handleFormSubmit}>
-                    <p>
-                        <label htmlFor="typeOfProcedure">Type of Procedure</label> <br />
+                    <p className="typeOfProcedure-content">
+                        <label className="newBill-label" htmlFor="typeOfProcedure">Type of Procedure: </label> <br />
                         <select name="typeOfProcedure" onChange={this.handleChangeDropdown} value={this.state.value} id="procedure-dropdn">
                             <option value="Select A Procedure">Select A Procedure</option>
                             <option value="appendectomy_cost">Appendectomy</option>
@@ -179,7 +179,7 @@ class NewMedicalBill extends Component {
                         </select>
                     </p>
                     <p>
-                        <label htmlFor="cost">Cost of Procedure</label> <br />
+                        <label className="newBill-label" htmlFor="cost">Cost of Procedure: </label> <br />
                         <input
                             type="number"
                             name="cost"

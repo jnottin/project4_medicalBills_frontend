@@ -35,7 +35,7 @@ class Home extends Component {
 
   componentDidMount() {
     axios
-      // .get("http://roomkind.herokuapp.com/api/roomKind")
+      // .get("https://medishareapp.herokuapp.com/api/hospitals")
       .get("http://localhost:3010/api/hospitals")
       .then(res => {
         this.setState({
@@ -109,7 +109,7 @@ class Home extends Component {
         <div className="search-hosp-title">Search For A Hospital Near You</div>
         <nav className="navBar">
           <div className="search-sort-inputs">
-            <label htmlFor="typeOfProcedure">Type of Procedure</label>
+            <label htmlFor="typeOfProcedure">Type of Procedure: </label>
             <select name="typeOfProcedure" onChange={this.dropDownSelected} value={this.state.procedure_selected_sort} id="procedure-dropdn">
               <option value="Select A Procedure">Select A Procedure</option>
               <option value="appendectomy_cost">Appendectomy</option>
@@ -125,12 +125,10 @@ class Home extends Component {
             </select>
             <form onSubmit={this.setMapCenterFromLocation}>
               <label>
-                Give address and see on map
-            <input type="text" ref={el => this.location = el} />
-              </label>
+                Give address and see on map: </label>
+              <input type="text" ref={el => this.location = el} />
               <input type="submit" value="Submit" />
             </form>
-            <button className="submit-new-bill-btn"><a className="submit-new-bill-link" href="/submitCost">Submit Your Own Medical Bill</a></button>
           </div>
           {/* <button className="submit-new-bill-btn"><a className="submit-new-bill-link" href="/testAuto">test autocomplete</a></button> */}
         </nav>

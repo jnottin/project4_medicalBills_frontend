@@ -1,3 +1,26 @@
 #editHospSelected {
     display: none;
 }
+
+.newMedicalBill-content {
+    margin: 0 auto;
+    border: 2px solid #61dafb;
+    text-align: center;
+    width: 40%;
+    margin-top: 40px;
+    padding: 20px;
+}
+
+.newMedicalBill-title {
+    text-shadow: 2px 2px 4px #000000;
+    padding-top: 0;
+    
+}
+
+.typeOfProcedure-content {
+    margin-top: 0;
+}
+
+.newBill-label {
+    margin-bottom: 100px;
+}
