@@ -48,7 +48,7 @@ body {
 
 .navBar {
   border-radius: 15px;
-  font-size:25px;
+  font-size: 20px;
   border: 3px outset white;
   margin: 0 auto;
   width: 87.5%;
@@ -59,35 +59,14 @@ body {
   text-shadow: 2px 2px 4px #000000;
 }
 
-
-
-.about-grid {
-  display: grid;
-  grid-template-rows: 300px; 
-  grid-template-columns: 200px 200px 200px; 
-  margin: 50px auto 100px auto;
-  border: 2px solid #61dafb;
-  padding: 20px;
-  color: black;
+.search-drpdwn-item {
+  display: inline;
+  margin-left: 50px;
 }
 
-.about-col1 {
-  border: 2px solid #61dafb;
-  grid-row: 1;
-  grid-column: 1;
+.typeDrpDn {
+  margin-left: 130px; 
 }
-
-.about-col2 {
-  border: 2px solid #61dafb;
-  grid-row: 1;
-  grid-column: 2;
-}
-.about-col3 {
-  border: 2px solid #61dafb;
-  grid-row: 1;
-  grid-column: 3;
-}
-
 
 form {
   margin: 10px;

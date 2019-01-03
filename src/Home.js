@@ -22,7 +22,7 @@ class Home extends Component {
       },
       zoom: 12,
       location: '',
-      procedure_selected_sort: '',
+      procedure_selected_sort: 'avg_appendectomy_cost',
     };
     this.setMapCenter = this.setMapCenter.bind(this);
     this.setMapCenterFromLocation = this.setMapCenterFromLocation.bind(this);
@@ -83,11 +83,27 @@ class Home extends Component {
     );
   }
 
+  sortHospitalList(selectedProcedure) {
+    console.log(selectedProcedure)
+    // var selectedProcedure = this.state.procedure_selected_sort
+    var sortHospitalsList = this.state.hospitals.sort(function (a, b, selectedProcedure) {
+      console.log(a.selectedProcedure)
+      return a.selectedProcedure - b.selectedProcedure
+    })
+    console.log(sortHospitalsList)
+    this.setState({
+      hospitals: sortHospitalsList
+    })
+  }
+
   dropDownSelected(event) {
     // console.log(event.target.value)
     this.setState({ procedure_selected_sort: event.target.value });
     console.log(this.state.procedure_selected_sort)
+    // this.sortHospitalList(this.state.procedure_selected_sort)
   }
+
+
 
   // dropDownSelectedSubmit(event) {
   //   event.preventDefault();
@@ -97,6 +113,38 @@ class Home extends Component {
 
 
   render() {
+    const selectedProcedureSort = this.state.procedure_selected_sort
+    const hospitalsProp = this.state.hospitals
+    function sortHospByLowestCost() {
+      hospitalsProp.sort(function (a, b) {
+        console.log(a.avg_appendectomy_cost)
+        if (selectedProcedureSort === 'avg_appendectomy_cost') {
+          return a.avg_appendectomy_cost - b.avg_appendectomy_cost
+        } else if (selectedProcedureSort === 'avg_breast_biopsy_cost') {
+          return a.avg_breast_biopsy_cost - b.avg_breast_biopsy_cost
+        } else if (selectedProcedureSort === 'avg_carotid_endarterectomy_cost') {
+          return a.avg_carotid_endarterectomy_cost - b.avg_carotid_endarterectomy_cost
+        } else if (selectedProcedureSort === 'avg_cataract_surgery_cost') {
+          return a.avg_cataract_surgery_cost - b.avg_cataract_surgery_cost
+        } else if (selectedProcedureSort === 'avg_cesarean_section_cost') {
+          return a.avg_cesarean_section_cost - b.avg_cesarean_section_cost
+        } else if (selectedProcedureSort === 'avg_coronary_artery_bypass_cost') {
+          return a.avg_coronary_artery_bypass_cost - b.avg_coronary_artery_bypass_cost
+        } else if (selectedProcedureSort === 'avg_debridement_of_wound_cost') {
+          return a.avg_debridement_of_wound_cost - b.avg_debridement_of_wound_cost
+        } else if (selectedProcedureSort === 'avg_free_skin_graft_cost') {
+          return a.avg_free_skin_graft_cost - b.avg_free_skin_graft_cost
+        } else if (selectedProcedureSort === 'avg_spinal_fusion_cost') {
+          return a.avg_spinal_fusion_cost - b.avg_spinal_fusion_cost
+        } else if (selectedProcedureSort === 'avg_total_hip_replacement_cost') {
+          return a.avg_total_hip_replacement_cost - b.avg_total_hip_replacement_cost
+        } else {
+          console.log("error!!!!")
+        }
+      });
+    }
+    sortHospByLowestCost()
+
 
     // if (typeof this.state.hospitals != "undefined") {
 
@@ -106,29 +154,33 @@ class Home extends Component {
 
         <div className="fixed-med-bg"></div>
         <div id="search-near-you"></div>
-        <div className="search-hosp-title">Search For A Hospital Near You</div>
+        <div className="search-hosp-title">Find Procedure Prices Near You</div>
         <nav className="navBar">
           <div className="search-sort-inputs">
-            <label htmlFor="typeOfProcedure">Type of Procedure: </label>
-            <select name="typeOfProcedure" onChange={this.dropDownSelected} value={this.state.procedure_selected_sort} id="procedure-dropdn">
-              <option value="Select A Procedure">Select A Procedure</option>
-              <option value="appendectomy_cost">Appendectomy</option>
-              <option value="breast_biopsy_cost">Breast Biopsy</option>
-              <option value="carotid_endarterectomy_cost">Carotid Endarterectomy</option>
-              <option value="cataract_surgery_cost">Cataract Surgery</option>
-              <option value="cesarean_section_cost">Cesarean Section</option>
-              <option value="coronary_artery_bypass_cost">Coronary Artery Bypass</option>
-              <option value="debridement_of_wound_cost">Debridement of Wound</option>
-              <option value="free_skin_graft_cost">Free Skin Graft</option>
-              <option value="spinal_fusion_cost">Spinal Fusion</option>
-              <option value="total_hip_replacement_cost">Total Hip Replacement</option>
-            </select>
-            <form onSubmit={this.setMapCenterFromLocation}>
-              <label>
-                Give address and see on map: </label>
-              <input type="text" ref={el => this.location = el} />
-              <input type="submit" value="Submit" />
-            </form>
+            <div className="typeDrpDn search-drpdwn-item">
+              <label htmlFor="typeOfProcedure">Sort by Lowest Price Per Procedure: </label>
+              <select name="typeOfProcedure" onChange={this.dropDownSelected} value={this.state.procedure_selected_sort} id="procedure-dropdn">
+                <option value="Select A Procedure">Select A Procedure</option>
+                <option value="avg_appendectomy_cost">Appendectomy</option>
+                <option value="avg_breast_biopsy_cost">Breast Biopsy</option>
+                <option value="avg_carotid_endarterectomy_cost">Carotid Endarterectomy</option>
+                <option value="avg_cataract_surgery_cost">Cataract Surgery</option>
+                <option value="avg_cesarean_section_cost">Cesarean Section</option>
+                <option value="avg_coronary_artery_bypass_cost">Coronary Artery Bypass</option>
+                <option value="avg_debridement_of_wound_cost">Debridement of Wound</option>
+                <option value="avg_free_skin_graft_cost">Free Skin Graft</option>
+                <option value="avg_spinal_fusion_cost">Spinal Fusion</option>
+                <option value="avg_total_hip_replacement_cost">Total Hip Replacement</option>
+              </select>
+            </div>
+            <div className="searchMap search-drpdwn-item">
+              <form onSubmit={this.setMapCenterFromLocation}>
+                <label>
+                  Search For Places On The Map: </label>
+                <input type="text" ref={el => this.location = el} />
+                <input type="submit" value="Submit" />
+              </form>
+            </div>
           </div>
           {/* <button className="submit-new-bill-btn"><a className="submit-new-bill-link" href="/testAuto">test autocomplete</a></button> */}
         </nav>
