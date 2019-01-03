@@ -3,8 +3,8 @@ import './Map.css'
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
 const mapStyles = {
-    width: '60%',
-    height: '80%'
+    width: '100%',
+    height: '100%'
 };
 
 export class MapContainer extends Component {
@@ -50,7 +50,7 @@ export class MapContainer extends Component {
             <div>
                 <h2 className="map-title">Map</h2>
                 <h3 className="location-searched">Location Searched: {this.props.location}</h3>
-                <Map
+                <Map className="mapStyle"
                     google={this.props.google}
                     zoom={this.props.zoom}
                     style={mapStyles}

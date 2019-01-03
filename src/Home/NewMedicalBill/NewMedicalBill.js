@@ -35,6 +35,7 @@ class NewMedicalBill extends Component {
         this.handleChangeDropdown = this.handleChangeDropdown.bind(this);
     }
 
+
     handleChange = geoAddress => {
         this.setState({ geoAddress });
     };

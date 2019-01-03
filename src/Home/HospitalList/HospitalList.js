@@ -8,6 +8,24 @@ class HospitalList extends Component {
         this.state = {
             hospitalName: 'Hospital List',
         };
+        this.OpenAccordion = this.OpenAccordion.bind(this);
+    }
+
+    OpenAccordion() {
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
     }
 
 
@@ -143,17 +161,22 @@ class HospitalList extends Component {
             return (
                 <div key={hospital._id} className="specific-hospital">
                     <h3>({index.toString()}) - {hospital.name}</h3>
-                    <h4>Address: {hospital.address}</h4>
-                    <h4 className="procedure_item">Appendectomy Cost: ${avg_appendectomy_cost}</h4>
-                    <h4>Breast Biopsy Cost: ${avg_breast_biopsy_cost}</h4>
-                    <h4>Carotid Endarterectomy Cost: ${avg_carotid_endarterectomy_cost}</h4>
-                    <h4>Cataract Surgery Cost: ${avg_cataract_surgery_cost}</h4>
-                    <h4>Cesarean Section Cost: ${avg_cesarean_section_cost}</h4>
-                    <h4>Coronary Artery Bypass Cost: ${avg_coronary_artery_bypass_cost}</h4>
-                    <h4>Debridement of Wound Cost: ${avg_debridement_of_wound_cost}</h4>
-                    <h4>Free Skin Graft Cost: ${avg_free_skin_graft_cost}</h4>
-                    <h4>Spinal Fusion Cost: ${avg_spinal_fusion_cost}</h4>
-                    <h4>Total Hip Replacement Cost: ${avg_total_hip_replacement_cost}</h4>
+                    <h4 className="hospital-address">Address: {hospital.address}</h4>
+                    <button className="accordion" onClick={this.OpenAccordion}>See Prices Per Procedure</button>
+                    <div className="panel">
+                        <ul>
+                            <li className="procedure_item">Appendectomy Cost: ${avg_appendectomy_cost}</li>
+                            <li>Breast Biopsy Cost: ${avg_breast_biopsy_cost}</li>
+                            <li>Carotid Endarterectomy Cost: ${avg_carotid_endarterectomy_cost}</li>
+                            <li>Cataract Surgery Cost: ${avg_cataract_surgery_cost}</li>
+                            <li>Cesarean Section Cost: ${avg_cesarean_section_cost}</li>
+                            <li>Coronary Artery Bypass Cost: ${avg_coronary_artery_bypass_cost}</li>
+                            <li>Debridement of Wound Cost: ${avg_debridement_of_wound_cost}</li>
+                            <li>Free Skin Graft Cost: ${avg_free_skin_graft_cost}</li>
+                            <li>Spinal Fusion Cost: ${avg_spinal_fusion_cost}</li>
+                            <li>Total Hip Replacement Cost: ${avg_total_hip_replacement_cost}</li>
+                        </ul>
+                    </div>
                 </div>
             );
         });

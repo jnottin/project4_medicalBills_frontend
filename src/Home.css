@@ -1,11 +1,29 @@
 body {
+  /* background-color: #C7C7C7; */
   background-color: #282c34;
-  color: #61dafb;
+  color: white;
+}
+
+.fixed-med-bg {
+  /* background-color: black; */
+  background-image: url('./img/medicalRoom.jpg');
+  height: 700px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.fixed-para-divider {
+  height:300px;
+  /* box-shadow: 0 0 20px white; */
+  background-color: white;
 }
 
 .all-content {
   width: 100%;
   margin: 0 auto;
+  /* background-color:#C7C7C7; */
 }
 
 .grid {
@@ -29,19 +47,54 @@ body {
   border: 2px solid #61dafb;
   grid-row: 1;
   grid-column: 2;
+  position: relative;
 }
 
 .navBar {
+  border-radius: 15px;
   margin: 0 auto;
-  width: 90%;
-  background: #61dafb;
+  width: 87.5%;
+  background: white;
   color: black;
   margin-bottom: 5px;
-  padding: 0;
+  padding: 20px;
 }
 
-.navBar-map-item {
+.we-do-title {
+  font-size: 40px;
+  text-align: center;
+  margin-top: 50px;
+  color: white;
+  background-color: #282c34;
+  text-shadow: 2px 2px 4px #000000;
+}
 
+
+.about-grid {
+  display: grid;
+  grid-template-rows: 300px; 
+  grid-template-columns: 200px 200px 200px; 
+  margin: 50px auto 100px auto;
+  border: 2px solid #61dafb;
+  padding: 20px;
+  color: black;
+}
+
+.about-col1 {
+  border: 2px solid #61dafb;
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.about-col2 {
+  border: 2px solid #61dafb;
+  grid-row: 1;
+  grid-column: 2;
+}
+.about-col3 {
+  border: 2px solid #61dafb;
+  grid-row: 1;
+  grid-column: 3;
 }
 
 
@@ -51,10 +104,16 @@ form {
   display: inline;
 }
 
-.submit-new-bill-btn {
-  font-size: 20px;
-  
+.search-sort-inputs {
+  margin: 0 auto;
 }
-.submit-new-bill-link {
-  text-decoration: none;
+
+.search-hosp-title {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 2px 2px 4px #000000;
+  margin-bottom: 40px;
+  margin-top: 60px;
+
 }
