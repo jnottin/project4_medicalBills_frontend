@@ -4,6 +4,8 @@ import Geocode from "react-geocode";
 import './Home.css';
 import HospitalList from './Home/HospitalList/HospitalList.js'
 import MapContainer from './Home/Map/Map.js'
+import About from './Home/About/About.js'
+import Footer from './Home/Footer/Footer.js'
 import axios from "axios";
 
 
@@ -14,17 +16,21 @@ class Home extends Component {
     super(props);
     this.state = {
       hospitals: [],
-      procedures: [],
       userCoordinates: {
         lat: 38.8885,
         lng: -77.0931
       },
       zoom: 12,
       location: '',
+      procedure_selected_sort: '',
     };
     this.setMapCenter = this.setMapCenter.bind(this);
     this.setMapCenterFromLocation = this.setMapCenterFromLocation.bind(this);
+    this.dropDownSelected = this.dropDownSelected.bind(this);
+    // this.dropDownSelectedSubmit = this.dropDownSelectedSubmit.bind(this);
   }
+
+
 
 
   componentDidMount() {
@@ -37,17 +43,6 @@ class Home extends Component {
         });
       })
 
-      .catch(err => {
-        console.log(err);
-      });
-    axios
-      // .get("http://roomkind.herokuapp.com/api/roomKind")
-      .get("http://localhost:3010/api/procedures")
-      .then(res => {
-        this.setState({
-          procedures: res.data
-        });
-      })
       .catch(err => {
         console.log(err);
       });
@@ -88,45 +83,56 @@ class Home extends Component {
     );
   }
 
+  dropDownSelected(event) {
+    // console.log(event.target.value)
+    this.setState({ procedure_selected_sort: event.target.value });
+    console.log(this.state.procedure_selected_sort)
+  }
+
+  // dropDownSelectedSubmit(event) {
+  //   event.preventDefault();
+  //   this.setState({ procedure_selected: event.target.value });
+  //   console.log(this.state.procedure_selected_sort)
+  // }
+
 
   render() {
-    const proceduresList = this.state.procedures
 
-    //TRYING TO SORT PROCEDURES ALPHABETICALLY
-    // const procedures = this.state.procedures
-    // const proceduresList = procedures.filter(procedure => procedure.name_of_procedure)
-    // function sortProceduresAlpha() {
-    //   proceduresList.sort();
-    //   console.log(proceduresList)
-    // }
-    // sortProceduresAlpha()
+    // if (typeof this.state.hospitals != "undefined") {
 
-    proceduresList.map(procedure => {
-      var select = document.getElementById("procedure-dropdn")
-      var option = document.createElement('option');
-      option.text = option.value = procedure.name_of_procedure;
-      select.add(option);
-    });
-    // if (typeof residence != "undefined") {
     return (
       <div className="all-content">
+        <About />
+
+        <div className="fixed-med-bg"></div>
+        <div id="search-near-you"></div>
+        <div className="search-hosp-title">Search For A Hospital Near You</div>
         <nav className="navBar">
-          <form onSubmit={this.setMapCenterFromLocation}>
-            <select name="cars" id="procedure-dropdn">
+          <div className="search-sort-inputs">
+            <label htmlFor="typeOfProcedure">Type of Procedure</label>
+            <select name="typeOfProcedure" onChange={this.dropDownSelected} value={this.state.procedure_selected_sort} id="procedure-dropdn">
               <option value="Select A Procedure">Select A Procedure</option>
-              <option value="Select A Procedure">All Procedures</option>
+              <option value="appendectomy_cost">Appendectomy</option>
+              <option value="breast_biopsy_cost">Breast Biopsy</option>
+              <option value="carotid_endarterectomy_cost">Carotid Endarterectomy</option>
+              <option value="cataract_surgery_cost">Cataract Surgery</option>
+              <option value="cesarean_section_cost">Cesarean Section</option>
+              <option value="coronary_artery_bypass_cost">Coronary Artery Bypass</option>
+              <option value="debridement_of_wound_cost">Debridement of Wound</option>
+              <option value="free_skin_graft_cost">Free Skin Graft</option>
+              <option value="spinal_fusion_cost">Spinal Fusion</option>
+              <option value="total_hip_replacement_cost">Total Hip Replacement</option>
             </select>
-            <input type="submit" value="Submit" />
-          </form>
-          <form onSubmit={this.setMapCenterFromLocation}>
-            <label>
-              Give address and see on map
+            <form onSubmit={this.setMapCenterFromLocation}>
+              <label>
+                Give address and see on map
             <input type="text" ref={el => this.location = el} />
-            </label>
-            <input type="submit" value="Submit" />
-          </form>
-          <button className="submit-new-bill-btn"><a className="submit-new-bill-link" href="/submitCost">Submit New Medical Bill</a></button>
-          <button className="submit-new-bill-btn"><a className="submit-new-bill-link" href="/testAuto">test autocomplete</a></button>
+              </label>
+              <input type="submit" value="Submit" />
+            </form>
+            <button className="submit-new-bill-btn"><a className="submit-new-bill-link" href="/submitCost">Submit Your Own Medical Bill</a></button>
+          </div>
+          {/* <button className="submit-new-bill-btn"><a className="submit-new-bill-link" href="/testAuto">test autocomplete</a></button> */}
         </nav>
         <div className="grid">
           <div className="hosp-col">
@@ -136,6 +142,7 @@ class Home extends Component {
                 <HospitalList
                   {...props}
                   hospitals={this.state.hospitals}
+                  procedure_selected_sort={this.state.procedure_selected_sort}
                 />
               )}
             />
@@ -156,6 +163,7 @@ class Home extends Component {
             />
           </div>
         </div>
+        <Footer />
       </div >
     );
     // } else {
