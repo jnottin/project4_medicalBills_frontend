@@ -109,9 +109,9 @@ class NewMedicalBill extends Component {
     }
 
     render() {
-        // if (this.state.redirect === true) {
-        //     return <Redirect to='/' />
-        // }
+        if (this.state.redirect === true) {
+            return <Redirect to='/' />
+        }
 
         return (
             <div className="newMedicalBill-content">
@@ -138,7 +138,6 @@ class NewMedicalBill extends Component {
                                     const className = suggestion.active
                                         ? 'suggestion-item--active'
                                         : 'suggestion-item';
-                                    // inline style for demonstration purpose
                                     const style = suggestion.active
                                         ? { backgroundColor: '#424857' }
                                         : { backgroundColor: '#636c83' };
@@ -152,7 +151,6 @@ class NewMedicalBill extends Component {
                                         >
                                             <div>{suggestion.formattedSuggestion.mainText}</div>
                                             <div>{suggestion.formattedSuggestion.secondaryText}</div>
-                                            <div>{suggestion.address}</div>
                                         </div>
                                     );
                                 })}

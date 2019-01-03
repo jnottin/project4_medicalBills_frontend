@@ -4,10 +4,20 @@ import Geocode from "react-geocode";
 import './Home.css';
 import HospitalList from './Home/HospitalList/HospitalList.js'
 import MapContainer from './Home/Map/Map.js'
-import About from './Home/About/About.js'
 import Footer from './Home/Footer/Footer.js'
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from 'react-places-autocomplete';
 import axios from "axios";
 
+const google = window.google;
+
+const searchOptions = {
+  location: new google.maps.LatLng(38.8885, -77.0931),
+  radius: 2000,
+  // types: ['address']
+}
 
 Geocode.setApiKey("AIzaSyC2KMba-R4OMF2ROiKGpYGiXBpjyWFNV-4");
 
@@ -23,6 +33,7 @@ class Home extends Component {
       zoom: 12,
       location: '',
       procedure_selected_sort: 'avg_appendectomy_cost',
+      geoAddress: '',
     };
     this.setMapCenter = this.setMapCenter.bind(this);
     this.setMapCenterFromLocation = this.setMapCenterFromLocation.bind(this);
@@ -30,7 +41,26 @@ class Home extends Component {
     // this.dropDownSelectedSubmit = this.dropDownSelectedSubmit.bind(this);
   }
 
+  handleSelect = geoAddress => {
+    console.log(geoAddress)
+    geocodeByAddress(geoAddress)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => {
+        console.log('Success', latLng)
+        this.setState({
+          userCoordinates: {
+            lat: latLng.lat,
+            lng: latLng.lng
+          },
+          zoom: 12,
+        })
+      })
+      .catch(error => console.error('Error', error));
+  };
 
+  handleChange = geoAddress => {
+    this.setState({ geoAddress });
+  };
 
 
   componentDidMount() {
@@ -115,29 +145,29 @@ class Home extends Component {
   render() {
     const selectedProcedureSort = this.state.procedure_selected_sort
     const hospitalsProp = this.state.hospitals
+    console.log(hospitalsProp)
     function sortHospByLowestCost() {
       hospitalsProp.sort(function (a, b) {
-        console.log(a.avg_appendectomy_cost)
         if (selectedProcedureSort === 'avg_appendectomy_cost') {
-          return a.avg_appendectomy_cost - b.avg_appendectomy_cost
+          return (a.avg_appendectomy_cost === undefined) - (b.avg_appendectomy_cost === undefined) || +(a.avg_appendectomy_cost > b.avg_appendectomy_cost) || -(a.avg_appendectomy_cost < b.avg_appendectomy_cost);
         } else if (selectedProcedureSort === 'avg_breast_biopsy_cost') {
-          return a.avg_breast_biopsy_cost - b.avg_breast_biopsy_cost
+          return (a.avg_breast_biopsy_cost === undefined) - (b.avg_breast_biopsy_cost === undefined) || +(a.avg_breast_biopsy_cost > b.avg_breast_biopsy_cost) || -(a.avg_breast_biopsy_cost < b.avg_breast_biopsy_cost);
         } else if (selectedProcedureSort === 'avg_carotid_endarterectomy_cost') {
-          return a.avg_carotid_endarterectomy_cost - b.avg_carotid_endarterectomy_cost
+          return (a.avg_carotid_endarterectomy_cost === undefined) - (b.avg_carotid_endarterectomy_cost === undefined) || +(a.avg_carotid_endarterectomy_cost > b.avg_carotid_endarterectomy_cost) || -(a.avg_carotid_endarterectomy_cost < b.avg_carotid_endarterectomy_cost);
         } else if (selectedProcedureSort === 'avg_cataract_surgery_cost') {
-          return a.avg_cataract_surgery_cost - b.avg_cataract_surgery_cost
+          return (a.avg_cataract_surgery_cost === undefined) - (b.avg_cataract_surgery_cost === undefined) || +(a.avg_cataract_surgery_cost > b.avg_cataract_surgery_cost) || -(a.avg_cataract_surgery_cost < b.avg_cataract_surgery_cost);
         } else if (selectedProcedureSort === 'avg_cesarean_section_cost') {
-          return a.avg_cesarean_section_cost - b.avg_cesarean_section_cost
+          return (a.avg_cesarean_section_cost === undefined) - (b.avg_cesarean_section_cost === undefined) || +(a.avg_cesarean_section_cost > b.avg_cesarean_section_cost) || -(a.avg_cesarean_section_cost < b.avg_cesarean_section_cost);
         } else if (selectedProcedureSort === 'avg_coronary_artery_bypass_cost') {
-          return a.avg_coronary_artery_bypass_cost - b.avg_coronary_artery_bypass_cost
+          return (a.avg_coronary_artery_bypass_cost === undefined) - (b.avg_coronary_artery_bypass_cost === undefined) || +(a.avg_coronary_artery_bypass_cost > b.avg_coronary_artery_bypass_cost) || -(a.avg_coronary_artery_bypass_cost < b.avg_coronary_artery_bypass_cost);
         } else if (selectedProcedureSort === 'avg_debridement_of_wound_cost') {
-          return a.avg_debridement_of_wound_cost - b.avg_debridement_of_wound_cost
+          return (a.avg_debridement_of_wound_cost === undefined) - (b.avg_debridement_of_wound_cost === undefined) || +(a.avg_debridement_of_wound_cost > b.avg_debridement_of_wound_cost) || -(a.avg_debridement_of_wound_cost < b.avg_debridement_of_wound_cost);
         } else if (selectedProcedureSort === 'avg_free_skin_graft_cost') {
-          return a.avg_free_skin_graft_cost - b.avg_free_skin_graft_cost
+          return (a.avg_free_skin_graft_cost === undefined) - (b.avg_free_skin_graft_cost === undefined) || +(a.avg_free_skin_graft_cost > b.avg_free_skin_graft_cost) || -(a.avg_free_skin_graft_cost < b.avg_free_skin_graft_cost);
         } else if (selectedProcedureSort === 'avg_spinal_fusion_cost') {
-          return a.avg_spinal_fusion_cost - b.avg_spinal_fusion_cost
+          return (a.avg_spinal_fusion_cost === undefined) - (b.avg_spinal_fusion_cost === undefined) || +(a.avg_spinal_fusion_cost > b.avg_spinal_fusion_cost) || -(a.avg_spinal_fusion_cost < b.avg_spinal_fusion_cost);
         } else if (selectedProcedureSort === 'avg_total_hip_replacement_cost') {
-          return a.avg_total_hip_replacement_cost - b.avg_total_hip_replacement_cost
+          return (a.avg_total_hip_replacement_cost === undefined) - (b.avg_total_hip_replacement_cost === undefined) || +(a.avg_total_hip_replacement_cost > b.avg_total_hip_replacement_cost) || -(a.avg_total_hip_replacement_cost < b.avg_total_hip_replacement_cost);
         } else {
           console.log("error!!!!")
         }
@@ -150,9 +180,13 @@ class Home extends Component {
 
     return (
       <div className="all-content">
-        <About />
-
-        <div className="fixed-med-bg"></div>
+        <div className="fixed-med-bg">
+          <div id="we-do" className="what-we-do">
+            <p className="about-page-content">Medi-Share is a price sharing app to help people who are not insured find the best prices for medical procedures.</p>
+            <p className="about-page-content">Users can see the average prices that real patients have paid for 10 of the most common medical procedures.</p>
+            <p className="about-page-content">We want to bring transparency to prices in the medical community!</p>
+          </div>
+        </div>
         <div id="search-near-you"></div>
         <div className="search-hosp-title">Find Procedure Prices Near You</div>
         <nav className="navBar">
@@ -160,7 +194,6 @@ class Home extends Component {
             <div className="typeDrpDn search-drpdwn-item">
               <label htmlFor="typeOfProcedure">Sort by Lowest Price Per Procedure: </label>
               <select name="typeOfProcedure" onChange={this.dropDownSelected} value={this.state.procedure_selected_sort} id="procedure-dropdn">
-                <option value="Select A Procedure">Select A Procedure</option>
                 <option value="avg_appendectomy_cost">Appendectomy</option>
                 <option value="avg_breast_biopsy_cost">Breast Biopsy</option>
                 <option value="avg_carotid_endarterectomy_cost">Carotid Endarterectomy</option>
@@ -174,6 +207,47 @@ class Home extends Component {
               </select>
             </div>
             <div className="searchMap search-drpdwn-item">
+              {/* <PlacesAutocomplete
+                value={this.state.geoAddress}
+                onChange={this.handleChange}
+                onSelect={this.handleSelect}
+                searchOptions={searchOptions}
+              >
+                {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                  <div>
+                    <input
+                      {...getInputProps({
+                        placeholder: 'Search Places ...',
+                        className: 'location-search-input',
+                      })}
+                    />
+                    <div className="autocomplete-dropdown-container">
+                      {loading && <div>Loading...</div>}
+                      {suggestions.map(suggestion => {
+                        const className = suggestion.active
+                          ? 'suggestion-item--active'
+                          : 'suggestion-item';
+                        const style = suggestion.active
+                          ? { backgroundColor: '#424857' }
+                          : { backgroundColor: '#636c83' };
+
+                        return (
+                          <div
+                            {...getSuggestionItemProps(suggestion, {
+                              className,
+                              style,
+                            })}
+                          >
+                            <div>{suggestion.formattedSuggestion.mainText}</div>
+                            <div>{suggestion.formattedSuggestion.secondaryText}</div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </PlacesAutocomplete> */}
+
               <form onSubmit={this.setMapCenterFromLocation}>
                 <label>
                   Search For Places On The Map: </label>
