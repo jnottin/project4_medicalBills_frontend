@@ -65,8 +65,8 @@ class Home extends Component {
 
   componentDidMount() {
     axios
-      // .get("https://medishareapp.herokuapp.com/api/hospitals")
-      .get("http://localhost:3010/api/hospitals/")
+      .get("https://medishareapp.herokuapp.com/api/hospitals")
+      // .get("http://localhost:3010/api/hospitals/")
       .then(res => {
         this.setState({
           hospitals: res.data
