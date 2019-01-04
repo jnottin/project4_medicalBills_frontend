@@ -7,6 +7,8 @@ import PlacesAutocomplete, {
     getLatLng,
 } from 'react-places-autocomplete';
 
+const backendBaseUrl = (process.env.NODE_ENV === "development") ? process.env.REACT_APP_DEVELOPMENT : process.env.REACT_APP_PRODUCTION
+
 const google = window.google;
 
 const searchOptions = {
@@ -89,7 +91,8 @@ class NewMedicalBill extends Component {
         // console.log(this.state.name)
         event.preventDefault();
         axios
-            .post("https://medishareapp.herokuapp.com/newMedicalBill/", {
+            .post(backendBaseUrl + "/newMedicalBill/", {
+                // .post("https://medishareapp.herokuapp.com/newMedicalBill/", {
                 // .post("http://localhost:3010/newMedicalBill/", {
                 name: this.state.name,
                 address: this.state.address,

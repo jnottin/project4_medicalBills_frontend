@@ -11,6 +11,8 @@ import PlacesAutocomplete, {
 } from 'react-places-autocomplete';
 import axios from "axios";
 
+const backendBaseUrl = (process.env.NODE_ENV === "development") ? process.env.REACT_APP_DEVELOPMENT : process.env.REACT_APP_PRODUCTION
+
 const google = window.google;
 
 const searchOptions = {
@@ -65,7 +67,7 @@ class Home extends Component {
 
   componentDidMount() {
     axios
-      .get("https://medishareapp.herokuapp.com/api/hospitals/")
+      .get(backendBaseUrl + "/api/hospitals/")
       // .get("http://localhost:3010/api/hospitals/")
       .then(res => {
         this.setState({
