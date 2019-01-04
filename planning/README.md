@@ -13,18 +13,20 @@ Medi-Share is a price sharing app to help people who are not insured find the be
 
 - Users can sort the hospitals based on the lowest price for the particular procedure they need to have.
 
-![Link to Picture of Project: Home Page]   (https://i.imgur.com/3zrow9N.png)
+Picture of Project: Home Page
+![Link to Picture of Project: Home Page](https://i.imgur.com/3zrow9N.png)
 
-![Link to Picture of Project: Search Hospitals / Map]   (https://i.imgur.com/cR0zcZR.png)
+Picture of Project: Search Hospitals / Map
+![Link to Picture of Project: Search Hospitals / Map](https://i.imgur.com/cR0zcZR.png)
 
 # Future Ideas:
--Implementing a Procedure model so that there can be an unlimited number of procedures that will update by user input. Instead of the now limited number of 10 static procedures.
+- Implementing a Procedure model so that there can be an unlimited number of procedures that will update by user input. Instead of the now limited number of 10 static procedures.
 
--Show hospitals in Hospital List based on how close they are to the area that the respondent is searching.
+- Show hospitals in Hospital List based on how close they are to the area that the respondent is searching.
 
--Hospital markers will inflate when respondent hovers over the particular hospital in the hostpital list. 
+- Hospital markers will inflate when respondent hovers over the particular hospital in the hostpital list. 
 
--HOSPITALS NEAR ME button - this will find the users longitude and latitude based on their browser and reposition the map center around that.
+- HOSPITALS NEAR ME button - this will find the users longitude and latitude based on their browser and reposition the map center around that.
 
 
 ## Technologies Used
