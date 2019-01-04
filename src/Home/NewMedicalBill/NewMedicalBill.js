@@ -89,7 +89,7 @@ class NewMedicalBill extends Component {
         // console.log(this.state.name)
         event.preventDefault();
         axios
-            .post("https://medishareapp.herokuapp.com/newMedicalBill", {
+            .post("https://medishareapp.herokuapp.com/newMedicalBill/", {
                 // .post("http://localhost:3010/newMedicalBill/", {
                 name: this.state.name,
                 address: this.state.address,
