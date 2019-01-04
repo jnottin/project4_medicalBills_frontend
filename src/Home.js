@@ -185,8 +185,8 @@ class Home extends Component {
         <div className="fixed-med-bg">
           <div id="we-do" className="what-we-do">
             <p className="about-page-content">Medi-Share is a price sharing app to help people who are not insured find the best prices for medical procedures.</p>
-            <p className="about-page-content">Users can see the average prices that real patients have paid for 10 of the most common medical procedures.</p>
-            <p className="about-page-content">We want to bring transparency to prices in the medical community!</p>
+            <p className="about-page-content">Users can see the average prices that real patients have paid for 10 of the most common medical procedures. They can also submit their own medical bills to help grow our database.</p>
+            <p className="about-page-content">Let's bring transparency to prices in the medical community!</p>
           </div>
         </div>
         <div id="search-near-you"></div>
@@ -258,7 +258,6 @@ class Home extends Component {
               </form>
             </div>
           </div>
-          {/* <button className="submit-new-bill-btn"><a className="submit-new-bill-link" href="/testAuto">test autocomplete</a></button> */}
         </nav>
         <div className="grid">
           <div className="hosp-col">

@@ -4,7 +4,6 @@ import { Route } from "react-router-dom";
 import Header from './Home/Header/Header.js'
 import Home from './Home.js'
 import NewMedicalBill from "./Home/NewMedicalBill/NewMedicalBill";
-import LocationSearchInput from './TestAuto.js'
 
 
 class App extends Component {
@@ -14,7 +13,6 @@ class App extends Component {
         <Header />
         <Route path="/" exact component={Home} />
         <Route path="/submitCost" component={NewMedicalBill} />
-        <Route path="/testAuto" component={LocationSearchInput} />
       </div>
     );
   }
