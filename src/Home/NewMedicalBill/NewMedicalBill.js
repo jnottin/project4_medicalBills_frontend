@@ -113,7 +113,7 @@ class NewMedicalBill extends Component {
 
     render() {
         if (this.state.redirect === true) {
-            return <Redirect to='/' />
+            return <Redirect to='/home' />
         }
 
         return (
