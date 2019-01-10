@@ -5,7 +5,7 @@ class Header extends Component {
     render() {
         let loginOrOut = []
         if (this.props.isLoggedIn) {
-            loginOrOut.push(<li key='see-your-bills'><a href='/user' className="nav-item">See Your Medical Bills</a></li>)
+            loginOrOut.push(<li key='see-your-bills'><a href='/userInfo' className="nav-item">See Your Medical Bills</a></li>)
             loginOrOut.push(<li key='logout'><a href='/logout' className="nav-item">Log Out</a></li>)
         } else {
             loginOrOut.push(<li key='signup'><a href='/signup' className="nav-item">Sign Up</a></li>)

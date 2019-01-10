@@ -60,7 +60,6 @@ class Home extends Component {
   componentDidMount() {
     axios
       .get(toggleBackendLink + "/api/hospitals/")
-      // .get("http://localhost:3010/api/hospitals/")
       .then(res => {
         this.setState({
           hospitals: res.data
@@ -127,6 +126,7 @@ class Home extends Component {
 
 
   render() {
+    console.log(localStorage)
 
     const selectedProcedureSort = this.state.procedure_selected_sort
     const hospitalsProp = this.state.hospitals
@@ -155,13 +155,11 @@ class Home extends Component {
           return (a.avg_total_hip_replacement_cost === undefined) - (b.avg_total_hip_replacement_cost === undefined) || +(a.avg_total_hip_replacement_cost > b.avg_total_hip_replacement_cost) || -(a.avg_total_hip_replacement_cost < b.avg_total_hip_replacement_cost);
         } else {
           console.log("error!!!!")
+          return null
         }
       });
     }
     sortHospByLowestCost()
-
-
-    // if (typeof this.state.hospitals != "undefined") {
 
     return (
       <div className="all-content">
@@ -274,13 +272,6 @@ class Home extends Component {
         <Footer />
       </div >
     );
-    // } else {
-    //   return (
-    //     <div>
-    //       <h1>Not Loaded Yet</h1>
-    //     </div>
-    //   );
-    // }
   }
 }
 

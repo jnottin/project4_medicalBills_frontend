@@ -8,6 +8,7 @@ import axios from "axios";
 import LogInForm from './LandingPage/LogInForm/LogInForm.js'
 import SignUpForm from './LandingPage/SignUpForm/SignUpForm.js'
 import LogOut from './LandingPage/LogOut/LogOut'
+import UserMedicalBills from "./Home/UserMedicalBills/UserMedicalBills";
 
 const toggleBackendLink = (process.env.NODE_ENV === "development") ? process.env.REACT_APP_DEVELOPMENT : process.env.REACT_APP_PRODUCTION
 
@@ -18,7 +19,7 @@ class App extends Component {
     super()
 
     this.state = {
-      email: '',
+      email: 'testPostUser',
       password: '',
       isLoggedIn: false,
       redirect: false
@@ -126,7 +127,14 @@ class App extends Component {
           <Route exact path='/submitCost/'
             render={(props) => {
               return (
-                <NewMedicalBill isLoggedIn={this.state.isLoggedIn} />
+                <NewMedicalBill isLoggedIn={this.state.isLoggedIn} email={this.state.email} />
+              )
+            }}
+          />
+          <Route exact path='/userInfo/'
+            render={(props) => {
+              return (
+                <UserMedicalBills isLoggedIn={this.state.isLoggedIn} />
               )
             }}
           />

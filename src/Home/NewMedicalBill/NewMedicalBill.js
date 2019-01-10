@@ -96,7 +96,8 @@ class NewMedicalBill extends Component {
                 lng: this.state.lng,
                 lat: this.state.lat,
                 cost: this.state.cost,
-                procedure: this.state.procedure_selected
+                procedure: this.state.procedure_selected,
+                email: this.props.email
             })
             .then(res => {
                 console.log("res");
@@ -112,6 +113,7 @@ class NewMedicalBill extends Component {
         if (this.state.redirect === true) {
             return <Redirect to='/' />
         }
+        console.log(this.props.email)
 
         return (
             <div className="newMedicalBill-content">
