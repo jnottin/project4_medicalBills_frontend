@@ -46,7 +46,6 @@ export class MapContainer extends Component {
 
 
     render() {
-        const google = window.google;
         return (
             <div>
                 <h2 className="map-title">Map</h2>

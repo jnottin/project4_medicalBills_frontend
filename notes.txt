@@ -1,30 +1,22 @@
 ****Problem on Map.js page index.js:1446 You have included the Google Maps JavaScript API multiple times on this page. This may cause unexpected errors.
-
-***** Search only works after second time pressing enter, SELECTING PROCEDURE ALSO
 ***** Averagemethod needs to work
 ****ON CLOSE INFOWINDOW, updates to current location, i think i need e.preventDefault
 
+FUNCT PROBLEMS:
+    -GET RID OF ERRORS - ex googleapi error
+    -SEARCH ON MAP - only works after second time pressing enter
 
-****START TOMORROW:
-    XXXXX-PASSING HOSPITAL INFO AS PROPS
-    XXXXX-Convert input to map COORDINATES
-    XXXXXXX-GETTING COORDINATES TO CONVERT TO MARKERS
-    XXXXXXX-Google Places convert to coordinates / OR find where user is
-    XXXXXXX-After post, get redirect working
-    XXXXXXXXXX Submit new procedure should be added to hospital or create new one
-
+CSS PROBLEMS:
+    -TITLE/SORT BY LOWEST PRICE - need to be centered correctly
+    -PROCEDURE PER HOSP - bullets need to be given br so they are forced to next line
 
 
-    -WORK ON NEW MEDICAL BILL PAGE , GOOGLE MAPS PLACES TO WORK
-        -enter per procedure cost
-        splice by first comma ***ALMOST JUST NEED TO GET ADDRESS/NAME SEPARATE-Separate Name of hospital and address from google autocomplete search
-        XXXXXXX-Show google autocomplete search that is selected in the input box
+AUTH:
+    -SIGN UP USER TAKEN - needs to show alert that that username is taken
+    -Make hospital page per user
+    -
 
-    -Get Average cost per procedure to show
-        -Sort hospital list by procedure
-        XXXXX-Average calculation in frontend with procedure
-        XXXXXXX-drop down menu per procedure in frontend for loop checking for all procedures in DB
-    
+ADD ONS: 
     -FIGURE OUT WHAT MAKES PARENT / CHILD COMP, PARENT = HospList Child = Map, Get Markers to inflate when list item is hovered
     -SORTING HOSPITAL LIST - closest vicinity then lowest price. closest take geolocation of user, subtract take overall diff of hospital long/lat and sort by lowest difference.
 

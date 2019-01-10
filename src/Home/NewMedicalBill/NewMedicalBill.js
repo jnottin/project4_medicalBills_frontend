@@ -7,7 +7,7 @@ import PlacesAutocomplete, {
     getLatLng,
 } from 'react-places-autocomplete';
 
-const backendBaseUrl = (process.env.NODE_ENV === "development") ? process.env.REACT_APP_DEVELOPMENT : process.env.REACT_APP_PRODUCTION
+const toggleBackendLink = (process.env.NODE_ENV === "development") ? process.env.REACT_APP_DEVELOPMENT : process.env.REACT_APP_PRODUCTION
 
 const google = window.google;
 
@@ -88,12 +88,9 @@ class NewMedicalBill extends Component {
 
     handleFormSubmit(event) {
         console.log(this.state.procedure_selected)
-        // console.log(this.state.name)
         event.preventDefault();
         axios
-            .post(backendBaseUrl + "/newMedicalBill/", {
-                // .post("https://medishareapp.herokuapp.com/newMedicalBill/", {
-                // .post("http://localhost:3010/newMedicalBill/", {
+            .post(toggleBackendLink + "/newMedicalBill/", {
                 name: this.state.name,
                 address: this.state.address,
                 lng: this.state.lng,
