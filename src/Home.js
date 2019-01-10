@@ -11,15 +11,7 @@ import PlacesAutocomplete, {
 } from 'react-places-autocomplete';
 import axios from "axios";
 
-const backendBaseUrl = (process.env.NODE_ENV === "development") ? process.env.REACT_APP_DEVELOPMENT : process.env.REACT_APP_PRODUCTION
-
-const google = window.google;
-
-const searchOptions = {
-  location: new google.maps.LatLng(38.8885, -77.0931),
-  radius: 2000,
-  // types: ['address']
-}
+const toggleBackendLink = (process.env.NODE_ENV === "development") ? process.env.REACT_APP_DEVELOPMENT : process.env.REACT_APP_PRODUCTION
 
 Geocode.setApiKey("AIzaSyC2KMba-R4OMF2ROiKGpYGiXBpjyWFNV-4");
 
@@ -67,7 +59,7 @@ class Home extends Component {
 
   componentDidMount() {
     axios
-      .get(backendBaseUrl + "/api/hospitals/")
+      .get(toggleBackendLink + "/api/hospitals/")
       // .get("http://localhost:3010/api/hospitals/")
       .then(res => {
         this.setState({
@@ -129,25 +121,16 @@ class Home extends Component {
   }
 
   dropDownSelected(event) {
-    // console.log(event.target.value)
     this.setState({ procedure_selected_sort: event.target.value });
     console.log(this.state.procedure_selected_sort)
-    // this.sortHospitalList(this.state.procedure_selected_sort)
   }
 
 
-
-  // dropDownSelectedSubmit(event) {
-  //   event.preventDefault();
-  //   this.setState({ procedure_selected: event.target.value });
-  //   console.log(this.state.procedure_selected_sort)
-  // }
-
-
   render() {
+
     const selectedProcedureSort = this.state.procedure_selected_sort
     const hospitalsProp = this.state.hospitals
-    console.log(hospitalsProp)
+    // console.log(hospitalsProp)
     function sortHospByLowestCost() {
       hospitalsProp.sort(function (a, b) {
         if (selectedProcedureSort === 'avg_appendectomy_cost') {
