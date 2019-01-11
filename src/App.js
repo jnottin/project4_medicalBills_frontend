@@ -127,7 +127,7 @@ class App extends Component {
           <Route exact path='/submitCost/'
             render={(props) => {
               return (
-                <NewMedicalBill isLoggedIn={this.state.isLoggedIn} email={this.state.email} />
+                <NewMedicalBill isLoggedIn={this.state.isLoggedIn} />
               )
             }}
           />

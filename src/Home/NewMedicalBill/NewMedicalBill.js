@@ -97,7 +97,9 @@ class NewMedicalBill extends Component {
                 lat: this.state.lat,
                 cost: this.state.cost,
                 procedure: this.state.procedure_selected,
-                email: this.props.email
+                headers: {
+                    authorization: 'Bearer ' + localStorage.token
+                }
             })
             .then(res => {
                 console.log("res");

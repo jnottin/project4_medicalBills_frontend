@@ -34,16 +34,34 @@ class UserMedicalBills extends Component {
     }
 
     render() {
-        console.log(this.state.userHospitals)
-
         if (this.props.redirect === true) {
             return <Redirect to='/' />
         }
+        console.log(this.state.userHospitals)
+        // const userHospitals = this.state.userHospitals.map(hospital => {
+
         return (
             <div>
-                <h1>USER MEDICAL BILLS</h1>
+                <h1>User Medical Bills</h1>
             </div>
-        )
+            // <div key={hospital._id} className="specific-hospital">
+            //     <h3>({index.toString()}) - {hospital.name}</h3>
+            //     <h4 className="hospital-address">Address: {hospital.address}</h4>
+            //     <button className="accordion">See Average Prices Per Procedure</button>
+            //     <div className="panel">
+            //         <ul>
+            //             <li className="procedure_item">Appendectomy Cost: ${hospital.appendectomy_cost}</li>
+            //         </ul>
+            //     </div>
+            // </div>
+        );
+        // });
+
+        // return (
+        //     <div className="hosp-grid" >
+        //         <div className="hosp-content">{userHospitals}</div>
+        //     </div>
+        // );
     }
 }
 
