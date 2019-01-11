@@ -15,6 +15,7 @@ class UserMedicalBills extends Component {
     }
 
     componentDidMount() {
+        console.log(localStorage.token)
         axios
             .get(toggleBackendLink + "/userHospitals", {
                 headers: {

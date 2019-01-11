@@ -19,7 +19,7 @@ class App extends Component {
     super()
 
     this.state = {
-      email: 'testPostUser',
+      email: '',
       password: '',
       isLoggedIn: false,
       redirect: false
