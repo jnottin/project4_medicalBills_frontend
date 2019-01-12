@@ -22,13 +22,15 @@ class App extends Component {
       email: '',
       password: '',
       isLoggedIn: false,
-      redirect: false
+      redirect: false,
+      userHospitals: '',
     }
     this.handleInput = this.handleInput.bind(this)
     this.handleSignUp = this.handleSignUp.bind(this)
     this.handleLogOut = this.handleLogOut.bind(this)
     this.handleLogIn = this.handleLogIn.bind(this)
   }
+
 
   componentDidMount() {
     if (localStorage.token) {
@@ -89,6 +91,7 @@ class App extends Component {
       })
       .catch(err => console.log(err))
   }
+
 
   render() {
     return (
