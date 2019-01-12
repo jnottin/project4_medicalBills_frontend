@@ -96,7 +96,7 @@ class NewMedicalBill extends Component {
                 lng: this.state.lng,
                 lat: this.state.lat,
                 cost: this.state.cost,
-                procedure: this.state.procedure_selected,
+                procedureName: this.state.procedure_selected,
                 headers: {
                     authorization: 'Bearer ' + localStorage.token
                 }

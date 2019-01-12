@@ -15,7 +15,6 @@ class UserMedicalBills extends Component {
     }
 
     componentDidMount() {
-        // this.props.getUserMedicalBills()
         axios
             .get(toggleBackendLink + "/userHospitals", {
                 headers: {
