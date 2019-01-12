@@ -9,6 +9,7 @@ import LogInForm from './LandingPage/LogInForm/LogInForm.js'
 import SignUpForm from './LandingPage/SignUpForm/SignUpForm.js'
 import LogOut from './LandingPage/LogOut/LogOut'
 import UserMedicalBills from "./Home/UserMedicalBills/UserMedicalBills";
+import EditMedicalBill from "./Home/EditMedicalBill/EditMedicalBill";
 
 const toggleBackendLink = (process.env.NODE_ENV === "development") ? process.env.REACT_APP_DEVELOPMENT : process.env.REACT_APP_PRODUCTION
 
@@ -138,6 +139,13 @@ class App extends Component {
             render={(props) => {
               return (
                 <UserMedicalBills isLoggedIn={this.state.isLoggedIn} />
+              )
+            }}
+          />
+          <Route exact path='/editMedicalBill/:id/'
+            render={(routerprops) => {
+              return (
+                <EditMedicalBill match={routerprops.match} isLoggedIn={this.state.isLoggedIn} userProcedures={this.state.userProcedures} />
               )
             }}
           />

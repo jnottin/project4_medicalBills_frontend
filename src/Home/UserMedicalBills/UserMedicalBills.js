@@ -11,7 +11,8 @@ class UserMedicalBills extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userProcedures: 'empty'
+            userProcedures: 'empty',
+            clickedProcedureId: '',
         };
     }
 
@@ -30,6 +31,13 @@ class UserMedicalBills extends Component {
             .catch(err => {
                 console.log(err);
             });
+    }
+
+    tryFunction(rowInfo) {
+        this.setState({
+            clickedProcedureId: rowInfo.original._id
+        })
+        console.log(this.state.clickedProcedureId)
     }
 
     render() {
@@ -77,8 +85,20 @@ class UserMedicalBills extends Component {
                         data={data}
                         columns={columns}
                         defaultPageSize={10}
+                        getTdProps={(state, rowInfo, column, instance) => {
+                            return {
+                                onClick: (e, handleOriginal) => {
+                                    this.tryFunction(rowInfo)
+                                    console.log("it produced this event:", e);
+                                    console.log("It was in this row:", rowInfo);
+                                    var id = rowInfo.original._id
+                                    window.location = "/editMedicalBill/" + id;
+                                }
+                            }
+                        }}
                     />
                 </div>
+
             );
 
         } else {

@@ -30,7 +30,9 @@ class HospitalList extends Component {
 
 
     render() {
+        console.log(this.props.hospitals)
         const hospitals = this.props.hospitals.map((hospital, ind) => {
+
 
             const index = ind + 1;
             return (
