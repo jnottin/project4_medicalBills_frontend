@@ -1,0 +1,28 @@
+.userPageTitle {
+    text-align: center;
+}
+.nav-ul-totalTable {
+    border: 3px outset white;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #4d5466;
+}
+
+.nav-ul-titleRow {
+    border: 3px outset white;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #4d5466;
+}
+
+.nav-ul-indBill {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #4d5466;
+}

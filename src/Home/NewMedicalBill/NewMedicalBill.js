@@ -27,6 +27,7 @@ class NewMedicalBill extends Component {
             lat: "",
             cost: "",
             procedure_selected: '',
+            date_of_procedure: '',
             redirect: false,
             geoAddress: ''
         };
@@ -97,6 +98,7 @@ class NewMedicalBill extends Component {
                 lat: this.state.lat,
                 cost: this.state.cost,
                 procedureName: this.state.procedure_selected,
+                date_of_procedure: this.state.date_of_procedure,
                 headers: {
                     authorization: 'Bearer ' + localStorage.token
                 }
@@ -112,9 +114,9 @@ class NewMedicalBill extends Component {
     }
 
     render() {
-        if (this.state.redirect === true) {
-            return <Redirect to='/' />
-        }
+        // if (this.state.redirect === true) {
+        //     return <Redirect to='/' />
+        // }
         console.log(this.props.email)
 
         return (
@@ -188,6 +190,16 @@ class NewMedicalBill extends Component {
                             value={this.state.cost}
                             onChange={this.handleInputChange}
                             placeholder="Cost of Procedure"
+                        />
+                    </p>
+                    <p>
+                        <label className="newBill-label" htmlFor="date">Date Of Procedure: </label> <br />
+                        <input
+                            type="text"
+                            name="date_of_procedure"
+                            value={this.state.date_of_procedure}
+                            onChange={this.handleInputChange}
+                            placeholder="Date of Procedure"
                         />
                     </p>
 

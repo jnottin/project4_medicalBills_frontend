@@ -17,7 +17,7 @@ class Header extends Component {
                 <ul id="pageTop" className="nav-ul">
                     <li><img className="logo" src='https://i.imgur.com/sfcnr2e.png' alt="Heart Logo" /></li>
                     <li><a className="nav-item" href="/#search-near-you">Find Prices Near You</a></li>
-                    <li><a className="nav-item" href="/submitCost">Submit Your Own Medical Bill</a></li>
+                    <li><a className="nav-item" href="/submitCost">Submit Medical Bill</a></li>
                     <li><a className="header-title" href="/">Medi-Share</a></li>
 
                     <div className="float-right">

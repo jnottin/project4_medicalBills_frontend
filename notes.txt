@@ -3,8 +3,10 @@
 ****ON CLOSE INFOWINDOW, updates to current location, i think i need e.preventDefault
 
 FUNCT PROBLEMS:
+    -Hospitals probably needs to be connected to procedures now....if not no easy way to edit procedure and edit price in hospital model
     -GET RID OF ERRORS - ex googleapi error
     -SEARCH ON MAP - only works after second time pressing enter
+
 
 CSS PROBLEMS:
     -TITLE/SORT BY LOWEST PRICE - need to be centered correctly
