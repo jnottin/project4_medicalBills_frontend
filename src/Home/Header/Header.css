@@ -18,19 +18,13 @@ a {
     box-shadow: 0 0 20px rgb(216, 243, 255);
 }
 
-.header-title {
-    margin-left: 140px;
-    font-size: 40px;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px #000000;
-}
+
 
 .logo {
     padding: 12px;
     width: 60px;
     height: 60px;
     float: left;
-    text-align: center;
 }
 
 .nav-ul {
@@ -58,3 +52,12 @@ li a {
     float: right;
     margin-right: 3%; 
 }
+
+.header-title {
+    /* text-align: center; */
+    margin: 0 auto;
+    font-size: 40px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px #000000;
+}
+

@@ -1,28 +1,18 @@
 .userPageTitle {
     text-align: center;
-}
-.nav-ul-totalTable {
-    border: 3px outset white;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #4d5466;
+    text-shadow: 2px 2px 4px #000000;
 }
 
-.nav-ul-titleRow {
+.total-content {
+    /* border: 2px solid #61dafb; */
     border: 3px outset white;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
     background-color: #4d5466;
+    margin-top: 40px;
 }
 
-.nav-ul-indBill {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #4d5466;
+.table {
+    border: 3px outset white;
+    background-color: #6e7891;
+    text-align: center;
+    word-wrap: break-word;
 }

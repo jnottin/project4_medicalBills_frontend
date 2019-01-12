@@ -4,6 +4,7 @@
 
 FUNCT PROBLEMS:
     -Hospitals probably needs to be connected to procedures now....if not no easy way to edit procedure and edit price in hospital model
+    -Sorting Hospital Bills by Date
     -GET RID OF ERRORS - ex googleapi error
     -SEARCH ON MAP - only works after second time pressing enter
 

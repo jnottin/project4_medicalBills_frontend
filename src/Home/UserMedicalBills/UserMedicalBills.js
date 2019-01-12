@@ -45,19 +45,22 @@ class UserMedicalBills extends Component {
             const data = userProcedures.userProcedures
             const columns = [{
                 Header: 'Hospital Name',
-                accessor: 'hospital_name'
+                accessor: 'hospital_name',
             }, {
                 Header: 'Hospital Address',
                 accessor: 'hospital_address',
             }, {
                 Header: 'Name of Procedure',
-                accessor: 'name_of_procedure'
+                accessor: 'name_of_procedure',
             }, {
                 Header: 'Cost of Procedure',
-                accessor: 'cost'
+                accessor: 'cost',
+                // maxWidth: 'auto'
+                maxWidth: 150,
             }, {
                 Header: 'Date Of Procedure',
-                accessor: 'date_of_procedure'
+                accessor: 'date_of_procedure',
+                maxWidth: 250,
             }
                 // }, {
                 //     id: '_id',
@@ -66,49 +69,20 @@ class UserMedicalBills extends Component {
                 // }
             ]
 
-
-
-            console.log(userProcedures)
-            let userProcedureslist = userProcedures.userProcedures.map(userProcedure => {
-                return (
-                    <div key={userProcedure._id}>
-                        <ul className="nav-ul-indBill">
-                            <li><h3>{userProcedure.hospital_name}</h3></li>
-                            <li><h4>Hospital Address: {userProcedure.hospital_address}</h4></li>
-                            <li><h4>Procedure: {userProcedure.name_of_procedure}</h4></li>
-                            <li><h4>Cost of Procedure: {userProcedure.cost}</h4></li>
-                            <li><h4>Date: {userProcedure.date_of_procedure}</h4></li>
-                            <li><button>Edit Medical Bill Info</button></li>
-                            <li><button>Delete Medical Bill</button></li>
-                        </ul>
-                    </div>
-                );
-            });
-
             return (
-                <div className="hosp-grid" >
+                <div className="total-content" >
                     <h1 className="userPageTitle">User Medical Bills</h1>
                     < ReactTable
+                        className="-striped -highlight table"
                         data={data}
                         columns={columns}
+                        defaultPageSize={10}
                     />
-                    <div className="nav-ul-totalTable">
-                        <div >
-                            <ul className="nav-ul-titleRow">
-                                <li><h4>Hospital Name</h4></li>
-                                <li><h4>Hospital Address</h4></li>
-                                <li><h4>Procedure</h4></li>
-                                <li><h4>Cost of Procedure</h4></li>
-                                <li><h4>Date of Procedure</h4></li>
-                            </ul>
-                        </div>
-                        <div className="hosp-content">{userProcedureslist}</div>
-                    </div>
                 </div>
             );
 
         } else {
-            return <h1>User Medical Bills</h1>;
+            return <h1 className="userPageTitle">User Medical Bills</h1>;
         }
     }
 }
