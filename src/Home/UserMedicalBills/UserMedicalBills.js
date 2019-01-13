@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 // import { Redirect } from 'react-router'
 import axios from "axios";
 import ReactTable from 'react-table'
+import { Route } from "react-router-dom";
+import EditMedicalBill from "../EditMedicalBill/EditMedicalBill";
 
 import './UserMedicalBills.css'
 
@@ -16,29 +18,23 @@ class UserMedicalBills extends Component {
         };
     }
 
-    componentDidMount() {
-        axios
-            .get(toggleBackendLink + "/userProcedures", {
-                headers: {
-                    authorization: 'Bearer ' + localStorage.token
-                }
-            })
-            .then(res => {
-                this.setState({
-                    userProcedures: res.data
-                });
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    }
+    // componentDidMount() {
+    //     axios
+    //         .get(toggleBackendLink + "/userProcedures", {
+    //             headers: {
+    //                 authorization: 'Bearer ' + localStorage.token
+    //             }
+    //         })
+    //         .then(res => {
+    //             this.setState({
+    //                 userProcedures: res.data
+    //             });
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         });
+    // }
 
-    tryFunction(rowInfo) {
-        this.setState({
-            clickedProcedureId: rowInfo.original._id
-        })
-        console.log(this.state.clickedProcedureId)
-    }
 
     render() {
         // if (this.props.isLoggedIn !== true) {
@@ -47,7 +43,8 @@ class UserMedicalBills extends Component {
 
 
 
-        var userProcedures = this.state.userProcedures
+        // var userProcedures = this.state.userProcedures
+        var userProcedures = this.props.userProcedures
         if (userProcedures !== 'empty') {
 
             const data = userProcedures.userProcedures
@@ -70,16 +67,14 @@ class UserMedicalBills extends Component {
                 accessor: 'date_of_procedure',
                 maxWidth: 250,
             }
-                // }, {
-                //     id: '_id',
-                //     Header: 'Delete Procedure',
-                //     accessor: <button>Delete</button>
-                // }
             ]
 
             return (
                 <div className="total-content" >
-                    <h1 className="userPageTitle">User Medical Bills</h1>
+                    <div className="userPageTitle">
+                        <h1>User Medical Bills</h1>
+                        <h3>Click on any medical bill below to go to the Edit or Delete Page</h3>
+                    </div>
                     < ReactTable
                         className="-striped -highlight table"
                         data={data}
@@ -88,7 +83,6 @@ class UserMedicalBills extends Component {
                         getTdProps={(state, rowInfo, column, instance) => {
                             return {
                                 onClick: (e, handleOriginal) => {
-                                    this.tryFunction(rowInfo)
                                     console.log("it produced this event:", e);
                                     console.log("It was in this row:", rowInfo);
                                     var id = rowInfo.original._id

@@ -25,6 +25,7 @@ class App extends Component {
       isLoggedIn: false,
       redirect: false,
       userHospitals: '',
+      userProcedures: [],
     }
     this.handleInput = this.handleInput.bind(this)
     this.handleSignUp = this.handleSignUp.bind(this)
@@ -32,12 +33,29 @@ class App extends Component {
     this.handleLogIn = this.handleLogIn.bind(this)
   }
 
+  getUserProcedures() {
+    axios
+      .get(toggleBackendLink + "/userProcedures", {
+        headers: {
+          authorization: 'Bearer ' + localStorage.token
+        }
+      })
+      .then(res => {
+        this.setState({
+          userProcedures: res.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
 
+  }
   componentDidMount() {
     if (localStorage.token) {
       this.setState({
         isLoggedIn: true
       })
+      this.getUserProcedures()
     } else {
       this.setState({
         isLoggedIn: false
@@ -63,6 +81,7 @@ class App extends Component {
           isLoggedIn: true,
           redirect: true
         })
+        this.getUserProcedures()
       })
       .catch(err => console.log(err))
   }
@@ -89,69 +108,75 @@ class App extends Component {
           isLoggedIn: true,
           redirect: true
         })
+        this.getUserProcedures()
       })
       .catch(err => console.log(err))
+
   }
 
 
   render() {
-    return (
-      <div className="App">
-        <Header isLoggedIn={this.state.isLoggedIn} />
-        <Switch>
-          <Route exact path="//"
-            render={(props) => {
-              return (
-                <Home isLoggedIn={this.state.isLoggedIn} />
-              )
-            }} />
+    if (this.state.userProcedures !== 0) {
+      console.log('userProcedures')
+      console.log(this.state.userProcedures)
+      return (
+        <div className="App">
+          <Header isLoggedIn={this.state.isLoggedIn} />
+          <Switch>
+            <Route exact path="//"
+              render={(props) => {
+                return (
+                  <Home isLoggedIn={this.state.isLoggedIn} />
+                )
+              }} />
 
-          <Route exact path='/signup/'
-            render={(props) => {
-              return (
-                <SignUpForm isLoggedIn={this.state.isLoggedIn} handleInput={this.handleInput} handleSignUp={this.handleSignUp} redirect={this.state.redirect} />
-              )
-            }}
-          />
-          <Route exact path='/logout/'
-            render={(props) => {
-              return (
-                <LogOut isLoggedIn={this.state.isLoggedIn} handleLogOut={this.handleLogOut} redirect={this.state.redirect} />
-              )
-            }}
-          />
+            <Route exact path='/signup/'
+              render={(props) => {
+                return (
+                  <SignUpForm isLoggedIn={this.state.isLoggedIn} handleInput={this.handleInput} handleSignUp={this.handleSignUp} redirect={this.state.redirect} />
+                )
+              }}
+            />
+            <Route exact path='/logout/'
+              render={(props) => {
+                return (
+                  <LogOut isLoggedIn={this.state.isLoggedIn} handleLogOut={this.handleLogOut} redirect={this.state.redirect} />
+                )
+              }}
+            />
 
-          <Route exact path='/login/'
-            render={(props) => {
-              return (
-                <LogInForm isLoggedIn={this.state.isLoggedIn} handleInput={this.handleInput} handleLogIn={this.handleLogIn} redirect={this.state.redirect} />
-              )
-            }}
-          />
-          <Route exact path='/submitCost/'
-            render={(props) => {
-              return (
-                <NewMedicalBill isLoggedIn={this.state.isLoggedIn} />
-              )
-            }}
-          />
-          <Route exact path='/userInfo/'
-            render={(props) => {
-              return (
-                <UserMedicalBills isLoggedIn={this.state.isLoggedIn} />
-              )
-            }}
-          />
-          <Route exact path='/editMedicalBill/:id/'
-            render={(routerprops) => {
-              return (
-                <EditMedicalBill match={routerprops.match} isLoggedIn={this.state.isLoggedIn} userProcedures={this.state.userProcedures} />
-              )
-            }}
-          />
-        </Switch>
-      </div>
-    );
+            <Route exact path='/login/'
+              render={(props) => {
+                return (
+                  <LogInForm isLoggedIn={this.state.isLoggedIn} handleInput={this.handleInput} handleLogIn={this.handleLogIn} redirect={this.state.redirect} />
+                )
+              }}
+            />
+            <Route exact path='/submitCost/'
+              render={(props) => {
+                return (
+                  <NewMedicalBill isLoggedIn={this.state.isLoggedIn} />
+                )
+              }}
+            />
+            <Route exact path='/userInfo/'
+              render={(props) => {
+                return (
+                  <UserMedicalBills isLoggedIn={this.state.isLoggedIn} userProcedures={this.state.userProcedures} />
+                )
+              }}
+            />
+            <Route exact path='/editMedicalBill/:id/'
+              render={(routerprops) => {
+                return (
+                  <EditMedicalBill match={routerprops.match} isLoggedIn={this.state.isLoggedIn} userProcedures={this.state.userProcedures} getUserProcedures={this.getUserProcedures} />
+                )
+              }}
+            />
+          </Switch>
+        </div>
+      );
+    }
   }
 }
 export default App;
