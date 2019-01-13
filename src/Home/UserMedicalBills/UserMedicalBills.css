@@ -1,0 +1,18 @@
+.userPageTitle {
+    text-align: center;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.total-content {
+    /* border: 2px solid #61dafb; */
+    border: 3px outset white;
+    background-color: #4d5466;
+    margin-top: 40px;
+}
+
+.table {
+    border: 3px outset white;
+    background-color: #6e7891;
+    text-align: center;
+    word-wrap: break-word;
+}

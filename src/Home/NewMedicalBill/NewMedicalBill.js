@@ -7,6 +7,8 @@ import PlacesAutocomplete, {
     getLatLng,
 } from 'react-places-autocomplete';
 
+const toggleBackendLink = (process.env.NODE_ENV === "development") ? process.env.REACT_APP_DEVELOPMENT : process.env.REACT_APP_PRODUCTION
+
 const google = window.google;
 
 const searchOptions = {
@@ -23,10 +25,9 @@ class NewMedicalBill extends Component {
             address: "",
             lng: "",
             lat: "",
-            name_of_procedure: "",
             cost: "",
-            insurance_provider: "",
-            date_of_procedure: "",
+            procedure_selected: '',
+            date_of_procedure: '',
             redirect: false,
             geoAddress: ''
         };
@@ -34,7 +35,9 @@ class NewMedicalBill extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.showAutoInput = this.showAutoInput.bind(this);
+        this.handleChangeDropdown = this.handleChangeDropdown.bind(this);
     }
+
 
     handleChange = geoAddress => {
         this.setState({ geoAddress });
@@ -42,12 +45,15 @@ class NewMedicalBill extends Component {
 
     handleSelect = geoAddress => {
         console.log(geoAddress)
-        document.getElementById("autoCompleteSelected").innerText = "Hospital selected: " + geoAddress;
+        document.getElementById("autoCompleteSelected").innerText = "Hospital Selected: " + geoAddress;
         document.getElementById("autoCompleteInput").style.display = 'none';
         document.getElementById("editHospSelected").style.display = 'inline';
-
+        var indexOfComma = geoAddress.indexOf(',')
+        var nameFromGeoAdd = geoAddress.slice(0, indexOfComma)
+        var addressFromGeoAdd = geoAddress.slice(indexOfComma + 2, -1)
         this.setState({
-            name: geoAddress
+            name: nameFromGeoAdd,
+            address: addressFromGeoAdd
         })
         geocodeByAddress(geoAddress)
             .then(results => getLatLng(results[0]))
@@ -62,8 +68,8 @@ class NewMedicalBill extends Component {
     };
 
     showAutoInput() {
-        document.getElementById("autoCompleteInput").style.display = 'block';
-        document.getElementById("autoCompleteSelected").innerText = "Name of Hospital Where Procedure Took Place";
+        document.getElementById("autoCompleteInput").style.display = 'inline';
+        document.getElementById("autoCompleteSelected").innerText = "Name of Hospital Where Procedure Took Place: ";
         document.getElementById("editHospSelected").style.display = 'none';
     }
 
@@ -77,20 +83,25 @@ class NewMedicalBill extends Component {
         });
     }
 
+    handleChangeDropdown(event) {
+        this.setState({ procedure_selected: event.target.value });
+    }
+
     handleFormSubmit(event) {
+        console.log(this.state.procedure_selected)
         event.preventDefault();
         axios
-            //   .post("http://roomkind.herokuapp.com/project3roomKind/residences", {
-            .post("http://localhost:3010/newMedicalBill", {
+            .post(toggleBackendLink + "/newMedicalBill/", {
                 name: this.state.name,
                 address: this.state.address,
                 lng: this.state.lng,
                 lat: this.state.lat,
-                name_of_procedure: this.state.name_of_procedure,
                 cost: this.state.cost,
-                insurance_provider: this.state.insurance_provider,
+                procedureName: this.state.procedure_selected,
                 date_of_procedure: this.state.date_of_procedure,
-                // procedures: [Procedure],
+                headers: {
+                    authorization: 'Bearer ' + localStorage.token
+                }
             })
             .then(res => {
                 console.log("res");
@@ -106,11 +117,12 @@ class NewMedicalBill extends Component {
         // if (this.state.redirect === true) {
         //     return <Redirect to='/' />
         // }
+        console.log(this.props.email)
 
         return (
-            <div id="newResidenceForm" className="closed newResidenceForm">
-                <h1>New Medical Bill</h1>
-                <label htmlFor="name" id="autoCompleteSelected">Name of Hospital Where Procedure Took Place</label> <br />
+            <div className="newMedicalBill-content">
+                <h1 className="newMedicalBill-title">New Medical Bill</h1>
+                <label className="newBill-label" htmlFor="name" id="autoCompleteSelected">Name of Hospital Where Procedure Took Place: </label> <br />
                 <PlacesAutocomplete
                     value={this.state.geoAddress}
                     onChange={this.handleChange}
@@ -132,10 +144,9 @@ class NewMedicalBill extends Component {
                                     const className = suggestion.active
                                         ? 'suggestion-item--active'
                                         : 'suggestion-item';
-                                    // inline style for demonstration purpose
                                     const style = suggestion.active
-                                        ? { backgroundColor: 'black' }
-                                        : { backgroundColor: 'white' };
+                                        ? { backgroundColor: '#424857' }
+                                        : { backgroundColor: '#636c83' };
 
                                     return (
                                         <div
@@ -146,7 +157,6 @@ class NewMedicalBill extends Component {
                                         >
                                             <div>{suggestion.formattedSuggestion.mainText}</div>
                                             <div>{suggestion.formattedSuggestion.secondaryText}</div>
-                                            <div>{suggestion.address}</div>
                                         </div>
                                     );
                                 })}
@@ -154,19 +164,26 @@ class NewMedicalBill extends Component {
                         </div>
                     )}
                 </PlacesAutocomplete>
+
                 <form onSubmit={this.handleFormSubmit}>
-                    <p>
-                        <label htmlFor="name_of_procedure">Name of Procedure</label> <br />
-                        <input
-                            type="text"
-                            name="name_of_procedure"
-                            value={this.state.name_of_procedure}
-                            onChange={this.handleInputChange}
-                            placeholder="Name of Procedure"
-                        />
+                    <p className="typeOfProcedure-content">
+                        <label className="newBill-label" htmlFor="typeOfProcedure">Type of Procedure: </label> <br />
+                        <select name="typeOfProcedure" onChange={this.handleChangeDropdown} value={this.state.value} id="procedure-dropdn">
+                            <option value="Select A Procedure">Select A Procedure</option>
+                            <option value="appendectomy_cost">Appendectomy</option>
+                            <option value="breast_biopsy_cost">Breast Biopsy</option>
+                            <option value="carotid_endarterectomy_cost">Carotid Endarterectomy</option>
+                            <option value="cataract_surgery_cost">Cataract Surgery</option>
+                            <option value="cesarean_section_cost">Cesarean Section</option>
+                            <option value="coronary_artery_bypass_cost">Coronary Artery Bypass</option>
+                            <option value="debridement_of_wound_cost">Debridement of Wound</option>
+                            <option value="free_skin_graft_cost">Free Skin Graft</option>
+                            <option value="spinal_fusion_cost">Spinal Fusion</option>
+                            <option value="total_hip_replacement_cost">Total Hip Replacement</option>
+                        </select>
                     </p>
                     <p>
-                        <label htmlFor="cost">Cost of Procedure</label> <br />
+                        <label className="newBill-label" htmlFor="cost">Cost of Procedure: </label> <br />
                         <input
                             type="number"
                             name="cost"
@@ -176,31 +193,17 @@ class NewMedicalBill extends Component {
                         />
                     </p>
                     <p>
-                        <label htmlFor="insurance_provider">Insurance Provider</label> <br />
+                        <label className="newBill-label" htmlFor="date">Date Of Procedure: </label> <br />
                         <input
                             type="text"
-                            name="insurance_provider"
-                            value={this.state.insurance_provider}
-                            onChange={this.handleInputChange}
-                            placeholder="Insurance Provider"
-                        />
-                    </p>
-                    <p>
-                        <label htmlFor="date_of_procedure">Date of Procedure</label> <br />
-                        <input
-                            type="date"
                             name="date_of_procedure"
-                            value={this.state.date}
+                            value={this.state.date_of_procedure}
                             onChange={this.handleInputChange}
                             placeholder="Date of Procedure"
                         />
                     </p>
-                    <p>
-                        <button type="submit" onClick={this.handleFormSubmit}>
-                            Submit
-            </button>
-                        {/* <button type="submit" onClick={() => { this.props.createResidence(this.state) }}>Submit</button> */}
-                    </p>
+
+                    <input type="submit" value="Submit" />
                 </form>
             </div>
         );
