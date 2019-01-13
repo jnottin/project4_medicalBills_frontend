@@ -114,9 +114,9 @@ class NewMedicalBill extends Component {
     }
 
     render() {
-        // if (this.state.redirect === true) {
-        //     return <Redirect to='/' />
-        // }
+        if (this.state.redirect === true) {
+            return <Redirect to='/' />
+        }
         console.log(this.props.email)
 
         return (

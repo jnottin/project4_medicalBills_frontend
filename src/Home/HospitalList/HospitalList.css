@@ -26,10 +26,10 @@
     text-align: center;
 }
 
-li {
+/* li {
     text-align: left;
     padding: 5px;
-}
+} */
 
 .specific-hospital:hover {
     background-color: rgb(38, 39, 45);
@@ -81,3 +81,12 @@ h4 {
     overflow: hidden;
     transition: max-height 0.2s ease-out;
   }
+
+  .procedure_item {
+      text-align: initial;
+      padding: 3px;
+  }
+
+/* .procedure_items {
+    display: block;
+} */

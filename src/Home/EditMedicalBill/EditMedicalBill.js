@@ -102,9 +102,9 @@ class EditMedicalBill extends Component {
     }
 
     render() {
-        // if (this.state.redirect === true) {
-        //     return <Redirect to='/userInfo' />
-        // }
+        if (this.state.redirect === true) {
+            return <Redirect to='/userInfo' />
+        }
 
         // const userProcedures = this.state.userProcedures.userProcedures;
         const userProcedures = this.props.userProcedures.userProcedures;
