@@ -173,7 +173,7 @@ class Home extends Component {
           </div>
         </div>
         <div id="search-near-you"></div>
-        <div className="search-hosp-title">Find Pfrocedure Prices Near You</div>
+        <div className="search-hosp-title">Find Procedure Prices Near You</div>
         <nav className="navBar">
           <div className="search-sort-inputs">
             <div className="typeDrpDn search-drpdwn-item">
