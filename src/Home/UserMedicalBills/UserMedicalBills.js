@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import { Redirect } from 'react-router'
+import { Redirect } from 'react-router'
 import axios from "axios";
 import ReactTable from 'react-table'
 import { Route } from "react-router-dom";
@@ -13,39 +13,39 @@ class UserMedicalBills extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userProcedures: 'empty',
+            userProcedures: [],
             clickedProcedureId: '',
         };
     }
 
-    // componentDidMount() {
-    //     axios
-    //         .get(toggleBackendLink + "/userProcedures", {
-    //             headers: {
-    //                 authorization: 'Bearer ' + localStorage.token
-    //             }
-    //         })
-    //         .then(res => {
-    //             this.setState({
-    //                 userProcedures: res.data
-    //             });
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //         });
-    // }
+    componentDidMount() {
+        axios
+            .get(toggleBackendLink + "/userProcedures", {
+                headers: {
+                    authorization: 'Bearer ' + localStorage.token
+                }
+            })
+            .then(res => {
+                this.setState({
+                    userProcedures: res.data
+                });
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
 
 
     render() {
-        // if (this.props.isLoggedIn !== true) {
+        // if (this.props.isLoggedIn === false) {
         //     return <Redirect to='/' />
         // }
 
 
 
-        // var userProcedures = this.state.userProcedures
-        var userProcedures = this.props.userProcedures
-        if (userProcedures !== 'empty') {
+        var userProcedures = this.state.userProcedures
+        // var userProcedures = this.props.userProcedures
+        if (typeof userProcedures !== 'undefined') {
 
             const data = userProcedures.userProcedures
             const columns = [{
@@ -73,7 +73,7 @@ class UserMedicalBills extends Component {
                 <div className="total-content" >
                     <div className="userPageTitle">
                         <h1>User Medical Bills</h1>
-                        <h3>Click on any medical bill below to go to the Edit or Delete Page</h3>
+                        <h2>Click on any medical bill below to go to the Edit or Delete Page</h2>
                     </div>
                     < ReactTable
                         className="-striped -highlight table"
@@ -85,8 +85,12 @@ class UserMedicalBills extends Component {
                                 onClick: (e, handleOriginal) => {
                                     console.log("it produced this event:", e);
                                     console.log("It was in this row:", rowInfo);
-                                    var id = rowInfo.original._id
-                                    window.location = "/editMedicalBill/" + id;
+                                    console.log(rowInfo)
+                                    if (typeof rowInfo != 'undefined') {
+                                        var id = rowInfo.original._id
+                                        window.location = "/editMedicalBill/" + id;
+
+                                    }
                                 }
                             }
                         }}

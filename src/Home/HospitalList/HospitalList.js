@@ -41,17 +41,17 @@ class HospitalList extends Component {
                     <h4 className="hospital-address">Address: {hospital.address}</h4>
                     <button className="accordion" onClick={this.OpenAccordion}>See Average Prices Per Procedure</button>
                     <div className="panel">
-                        <ul>
+                        <ul className="procedure_items">
                             <li className="procedure_item">Appendectomy Cost: ${hospital.avg_appendectomy_cost}</li>
-                            <li>Breast Biopsy Cost: ${hospital.avg_breast_biopsy_cost}</li>
-                            <li>Carotid Endarterectomy Cost: ${hospital.avg_carotid_endarterectomy_cost}</li>
-                            <li>Cataract Surgery Cost: ${hospital.avg_cataract_surgery_cost}</li>
-                            <li>Cesarean Section Cost: ${hospital.avg_cesarean_section_cost}</li>
-                            <li>Coronary Artery Bypass Cost: ${hospital.avg_coronary_artery_bypass_cost}</li>
-                            <li>Debridement of Wound Cost: ${hospital.avg_debridement_of_wound_cost}</li>
-                            <li>Free Skin Graft Cost: ${hospital.avg_free_skin_graft_cost}</li>
-                            <li>Spinal Fusion Cost: ${hospital.avg_spinal_fusion_cost}</li>
-                            <li>Total Hip Replacement Cost: ${hospital.avg_total_hip_replacement_cost}</li>
+                            <li className="procedure_item">Breast Biopsy Cost: ${hospital.avg_breast_biopsy_cost}</li>
+                            <li className="procedure_item">Carotid Endarterectomy Cost: ${hospital.avg_carotid_endarterectomy_cost}</li>
+                            <li className="procedure_item">Cataract Surgery Cost: ${hospital.avg_cataract_surgery_cost}</li>
+                            <li className="procedure_item">Cesarean Section Cost: ${hospital.avg_cesarean_section_cost}</li>
+                            <li className="procedure_item">Coronary Artery Bypass Cost: ${hospital.avg_coronary_artery_bypass_cost}</li>
+                            <li className="procedure_item">Debridement of Wound Cost: ${hospital.avg_debridement_of_wound_cost}</li>
+                            <li className="procedure_item">Free Skin Graft Cost: ${hospital.avg_free_skin_graft_cost}</li>
+                            <li className="procedure_item">Spinal Fusion Cost: ${hospital.avg_spinal_fusion_cost}</li>
+                            <li className="procedure_item">Total Hip Replacement Cost: ${hospital.avg_total_hip_replacement_cost}</li>
                         </ul>
                     </div>
                 </div>

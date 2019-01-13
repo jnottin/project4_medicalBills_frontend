@@ -133,6 +133,8 @@ class Home extends Component {
     // console.log(hospitalsProp)
     function sortHospByLowestCost() {
       hospitalsProp.sort(function (a, b) {
+        // return (a.selectedProcedureSort === undefined) - (b.selectedProcedureSort === undefined) || +(a.selectedProcedureSort > b.selectedProcedureSort) || -(a.selectedProcedureSort < b.selectedProcedureSort);
+
         if (selectedProcedureSort === 'avg_appendectomy_cost') {
           return (a.avg_appendectomy_cost === undefined) - (b.avg_appendectomy_cost === undefined) || +(a.avg_appendectomy_cost > b.avg_appendectomy_cost) || -(a.avg_appendectomy_cost < b.avg_appendectomy_cost);
         } else if (selectedProcedureSort === 'avg_breast_biopsy_cost') {
@@ -165,8 +167,8 @@ class Home extends Component {
       <div className="all-content">
         <div className="fixed-med-bg">
           <div id="we-do" className="what-we-do">
-            <p className="about-page-content">Medi-Share is a price sharing app to help people who are not insured find the best prices for medical procedures.</p>
-            <p className="about-page-content">Users can see the average prices that real patients have paid for 10 of the most common medical procedures. They can also submit their own medical bills to help grow our database.</p>
+            <p className="about-page-content">Medi-Share is a price sharing app to help people who are not insured find the best prices for medical procedures. Users can see the average prices that real patients have paid for 10 of the most common medical procedures.</p>
+            <p className="about-page-content">Users who "Sign Up" can submit and view their own medical bills to help grow our database.</p>
             <p className="about-page-content">Let's bring transparency to prices in the medical community!</p>
           </div>
         </div>
@@ -235,7 +237,7 @@ class Home extends Component {
                 <label>
                   Search For Places On The Map: </label>
                 <input type="text" ref={el => this.location = el} />
-                <input type="submit" value="Submit" />
+                <input className="search-submit-btn" type="submit" value="Submit" />
               </form>
             </div>
           </div>

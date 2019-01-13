@@ -64,13 +64,20 @@ body {
   justify-content: center;
 }
 
+.search-sort-inputs {
+ text-align: center;
+}
+
 .search-drpdwn-item {
-  display: inline;
-  margin-left: 50px;
+  display: inline-block;
 }
 
 .typeDrpDn {
-  margin-left: 130px; 
+  margin-right: 20px; 
+}
+
+.search-submit-btn {
+  margin-left: 5px;
 }
 
 form {
@@ -96,10 +103,6 @@ form {
   display: block;
   transition: 0.3s;
 
-}
-
-.search-sort-inputs {
-  margin: 0 auto;
 }
 
 .search-hosp-title {
