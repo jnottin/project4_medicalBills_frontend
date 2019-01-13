@@ -6,7 +6,7 @@ class Header extends Component {
         let loginOrOut = []
         let seeYourMed = []
         if (this.props.isLoggedIn) {
-            seeYourMed.push(<li key='see-your-bills'><a href='/submitCost' className="float-left nav-item li-a">Submit Your Medical Bill</a></li>)
+            seeYourMed.push(<li key='submit-your-bills'><a href='/submitCost' className="float-left nav-item li-a">Submit Your Medical Bill</a></li>)
             seeYourMed.push(<li key='see-your-bills'><a href='/userInfo' className="float-left nav-item li-a">See Your Medical Bills</a></li>)
             loginOrOut.push(<li key='logout' className="float-left"><a href='/logout' className="nav-item li-a">Log Out</a></li>)
         } else {

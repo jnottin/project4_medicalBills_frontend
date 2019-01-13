@@ -117,13 +117,11 @@ class App extends Component {
 
   render() {
     if (this.state.userProcedures !== 0) {
-      console.log('userProcedures')
-      console.log(this.state.userProcedures)
       return (
         <div className="App">
           <Header isLoggedIn={this.state.isLoggedIn} />
           <Switch>
-            <Route exact path="//"
+            <Route exact path="/"
               render={(props) => {
                 return (
                   <Home isLoggedIn={this.state.isLoggedIn} />
@@ -173,6 +171,7 @@ class App extends Component {
                 )
               }}
             />
+
           </Switch>
         </div>
       );

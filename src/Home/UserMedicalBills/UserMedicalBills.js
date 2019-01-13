@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router'
 import axios from "axios";
 import ReactTable from 'react-table'
-import { Route } from "react-router-dom";
-import EditMedicalBill from "../EditMedicalBill/EditMedicalBill";
 
 import './UserMedicalBills.css'
 
@@ -83,9 +80,6 @@ class UserMedicalBills extends Component {
                         getTdProps={(state, rowInfo, column, instance) => {
                             return {
                                 onClick: (e, handleOriginal) => {
-                                    console.log("it produced this event:", e);
-                                    console.log("It was in this row:", rowInfo);
-                                    console.log(rowInfo)
                                     if (typeof rowInfo != 'undefined') {
                                         var id = rowInfo.original._id
                                         window.location = "/editMedicalBill/" + id;

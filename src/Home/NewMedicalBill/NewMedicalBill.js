@@ -114,10 +114,9 @@ class NewMedicalBill extends Component {
     }
 
     render() {
-        if (this.state.redirect === true) {
-            return <Redirect to='/' />
-        }
-        console.log(this.props.email)
+        // if (this.state.redirect === true) {
+        //     return <Redirect to='/' />
+        // }
 
         return (
             <div className="newMedicalBill-content">

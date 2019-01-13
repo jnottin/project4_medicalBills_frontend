@@ -5,7 +5,7 @@ import './Home.css';
 import HospitalList from './Home/HospitalList/HospitalList.js'
 import MapContainer from './Home/Map/Map.js'
 import Footer from './Home/Footer/Footer.js'
-import PlacesAutocomplete, {
+import {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
@@ -29,10 +29,10 @@ class Home extends Component {
       procedure_selected_sort: 'avg_appendectomy_cost',
       geoAddress: '',
     };
-    this.setMapCenter = this.setMapCenter.bind(this);
+    this.initialSetMapCenter = this.initialSetMapCenter.bind(this);
     this.setMapCenterFromLocation = this.setMapCenterFromLocation.bind(this);
     this.dropDownSelected = this.dropDownSelected.bind(this);
-    // this.dropDownSelectedSubmit = this.dropDownSelectedSubmit.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   handleSelect = geoAddress => {
@@ -56,6 +56,16 @@ class Home extends Component {
     this.setState({ geoAddress });
   };
 
+  handleInputChange(e) {
+    const target = e.target;
+    const name = target.name;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
 
   componentDidMount() {
     axios
@@ -71,7 +81,7 @@ class Home extends Component {
       });
   }
 
-  setMapCenter(event) {
+  initialSetMapCenter(event) {
     event.preventDefault();
     this.setState({
       userCoordinates: {
@@ -87,8 +97,7 @@ class Home extends Component {
   setMapCenterFromLocation(event) {
     event.preventDefault();
     this.setState({ location: this.location.value })
-    // console.log(this.state.location)
-    Geocode.fromAddress(this.state.location).then(
+    Geocode.fromAddress(this.location.value).then(
       response => {
         const { lat, lng } = response.results[0].geometry.location;
         console.log(lat, lng);
@@ -126,11 +135,8 @@ class Home extends Component {
 
 
   render() {
-    console.log(localStorage)
-
     const selectedProcedureSort = this.state.procedure_selected_sort
     const hospitalsProp = this.state.hospitals
-    // console.log(hospitalsProp)
     function sortHospByLowestCost() {
       hospitalsProp.sort(function (a, b) {
         // return (a.selectedProcedureSort === undefined) - (b.selectedProcedureSort === undefined) || +(a.selectedProcedureSort > b.selectedProcedureSort) || -(a.selectedProcedureSort < b.selectedProcedureSort);
@@ -237,6 +243,7 @@ class Home extends Component {
                 <label>
                   Search For Places On The Map: </label>
                 <input type="text" ref={el => this.location = el} />
+                {/* <input type="text" value={this.state.location} onChange={this.handleInputChange} /> */}
                 <input className="search-submit-btn" type="submit" value="Submit" />
               </form>
             </div>
@@ -263,7 +270,7 @@ class Home extends Component {
                   {...props}
                   userCoordinates={this.state.userCoordinates}
                   zoom={this.state.zoom}
-                  setMapCenter={this.setMapCenter}
+                  initialSetMapCenter={this.initialSetMapCenter}
                   location={this.state.location}
                   hospitals={this.state.hospitals}
                 />

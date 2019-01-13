@@ -11,26 +11,33 @@ class HospitalList extends Component {
         this.OpenAccordion = this.OpenAccordion.bind(this);
     }
 
-    OpenAccordion() {
-        var acc = document.getElementsByClassName("accordion");
-        var i;
+    componentDidMount() {
 
-        for (i = 0; i < acc.length; i++) {
+
+    }
+
+    OpenAccordion() {
+        console.log('1')
+        var acc = document.getElementsByClassName("accordion");
+        for (var i = 0; i < acc.length; i++) {
+            console.log('2')
             acc[i].addEventListener("click", function () {
                 this.classList.toggle("active");
                 var panel = this.nextElementSibling;
                 if (panel.style.maxHeight) {
+                    console.log('3')
                     panel.style.maxHeight = null;
                 } else {
+                    console.log('4')
                     panel.style.maxHeight = panel.scrollHeight + "px";
                 }
             });
         }
+
     }
 
 
     render() {
-        console.log(this.props.hospitals)
         const hospitals = this.props.hospitals.map((hospital, ind) => {
 
 
