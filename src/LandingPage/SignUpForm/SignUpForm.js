@@ -8,20 +8,19 @@ class SignUpForm extends Component {
             return <Redirect to='/' />
         }
         return (
-            <div>
-                <h2>Sign Up</h2>
-
-                <form>
-                    <div>
-                        <label htmlFor="email">Email</label>
+            <div className="allSignUp">
+                <h1 className="SignUp-title">Sign Up</h1>
+                <form >
+                    <div className="signUpInput">
+                        <label htmlFor="email">Email: </label><br />
                         <input type="text" name="email" onChange={this.props.handleInput} />
                     </div>
 
-                    <div>
-                        <label htmlFor="password">Password</label>
+                    <div className="signUpInput">
+                        <label htmlFor="password">Password: </label><br />
                         <input type="text" name="password" onChange={this.props.handleInput} />
                     </div>
-                    <input value="Submit" type="submit" onClick={this.props.handleSignUp} />
+                    <input className="signUpSubmit" value="Submit" type="submit" onClick={this.props.handleSignUp} />
                 </form>
             </div>
         )

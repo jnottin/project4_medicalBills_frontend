@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from "axios";
 import ReactTable from 'react-table'
-
 import './UserMedicalBills.css'
 
 const toggleBackendLink = (process.env.NODE_ENV === "development") ? process.env.REACT_APP_DEVELOPMENT : process.env.REACT_APP_PRODUCTION

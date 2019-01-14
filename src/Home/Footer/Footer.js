@@ -6,13 +6,8 @@ class Footer extends Component {
         return (
             <div>
                 {/* <ul className="footer-nav-ul">
-                    <li></li>
-                    <li><button className="nav-item" onClick={this.aboutPageSlide}>What We Do</button></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+                    <li className="float-left-foot nav-item"><a className="foot-link" href="https://github.com/jnottin/project4_medicalBills_frontend">See Frontend On GitHub</a></li>
+                    <li className="float-left-foot"><a className="foot-link" href="https://github.com/jnottin/project4_medicalBills_backend">See Frontend On GitHub</a></li>
                 </ul> */}
             </div>
         );

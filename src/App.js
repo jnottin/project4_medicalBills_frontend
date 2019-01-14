@@ -10,9 +10,9 @@ import SignUpForm from './LandingPage/SignUpForm/SignUpForm.js'
 import LogOut from './LandingPage/LogOut/LogOut'
 import UserMedicalBills from "./Home/UserMedicalBills/UserMedicalBills";
 import EditMedicalBill from "./Home/EditMedicalBill/EditMedicalBill";
+import { ProtectedRoute } from "./ProtectedRoute.js";
 
 const toggleBackendLink = (process.env.NODE_ENV === "development") ? process.env.REACT_APP_DEVELOPMENT : process.env.REACT_APP_PRODUCTION
-
 
 
 class App extends Component {
@@ -23,7 +23,6 @@ class App extends Component {
       email: '',
       password: '',
       isLoggedIn: false,
-      redirect: false,
       userHospitals: '',
       userProcedures: [],
     }
@@ -83,7 +82,10 @@ class App extends Component {
         })
         this.getUserProcedures()
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.log(err)
+        alert('That username is already being used. Please try a different one.')
+      })
   }
 
   handleLogOut() {
@@ -110,12 +112,15 @@ class App extends Component {
         })
         this.getUserProcedures()
       })
-      .catch(err => console.log(err))
-
+      .catch(err => {
+        console.log(err)
+        alert('There is either, no user by that name or you have entered the wrong password. Please check and try again.')
+      })
   }
 
 
   render() {
+
     if (this.state.userProcedures !== 0) {
       return (
         <div className="App">
@@ -150,29 +155,34 @@ class App extends Component {
                 )
               }}
             />
-            <Route exact path='/submitCost/'
-              render={(props) => {
-                return (
-                  <NewMedicalBill isLoggedIn={this.state.isLoggedIn} />
-                )
-              }}
-            />
-            <Route exact path='/userInfo/'
-              render={(props) => {
-                return (
-                  <UserMedicalBills isLoggedIn={this.state.isLoggedIn} userProcedures={this.state.userProcedures} />
-                )
-              }}
-            />
-            <Route exact path='/editMedicalBill/:id/'
-              render={(routerprops) => {
-                return (
-                  <EditMedicalBill match={routerprops.match} isLoggedIn={this.state.isLoggedIn} userProcedures={this.state.userProcedures} getUserProcedures={this.getUserProcedures} />
-                )
-              }}
+
+            < ProtectedRoute exact path='/submitCost/' component={NewMedicalBill}
+            // render={(props) => {
+            //   return (
+            //     <NewMedicalBill isLoggedIn={this.state.isLoggedIn} />
+            //   )
+            // }}
             />
 
+            <ProtectedRoute exact path='/userInfo/' component={UserMedicalBills}
+            // render={(props) => {
+            //   return (
+            //     <UserMedicalBills isLoggedIn={this.state.isLoggedIn} />
+            //   )
+            // }}
+            />
+
+            {this.state.isLoggedIn &&
+              <Route exact path='/editMedicalBill/:id/'
+                render={(routerprops) => {
+                  return (
+                    <EditMedicalBill match={routerprops.match} isLoggedIn={this.state.isLoggedIn} userProcedures={this.state.userProcedures} />
+                  )
+                }}
+              />
+            }
           </Switch>
+
         </div>
       );
     }

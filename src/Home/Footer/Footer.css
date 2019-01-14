@@ -2,6 +2,21 @@
     background-color: #4d5466;
     list-style-type: none;
     margin-top: 100px;
+    height: 80px;
+    width: 100%;
     padding: 0;
+    bottom: 0;
     overflow: hidden;
+}
+
+.float-left-foot {
+    float: left;
+}
+
+.foot-link {
+    margin: 0 auto;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    
 }

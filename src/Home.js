@@ -174,7 +174,7 @@ class Home extends Component {
         <div className="fixed-med-bg">
           <div id="we-do" className="what-we-do">
             <p className="about-page-content">Medi-Share is a price sharing app to help people who are not insured find the best prices for medical procedures. Users can see the average prices that real patients have paid for 10 of the most common medical procedures.</p>
-            <p className="about-page-content">Users who "Sign Up" can submit and view their own medical bills to help grow our database.</p>
+            <p className="about-page-content">Users who "Sign Up" or "Log In" can submit and view their own medical bills to help grow our database.</p>
             <p className="about-page-content">Let's bring transparency to prices in the medical community!</p>
           </div>
         </div>

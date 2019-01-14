@@ -115,8 +115,8 @@ class EditMedicalBill extends Component {
             const userProcedure = userProceduresInfo[0];
             console.log(userProcedure)
             return (
-                <div>
-                    <form>
+                <div className="allEditMedical">
+                    {/* <form>
                         <p>
                             <label className="newBill-label" htmlFor="name">Name of Hospital Where Procedure Took Place: </label> <br />
                             <input
@@ -176,19 +176,23 @@ class EditMedicalBill extends Component {
                         <div>
                             <button type="submit" onClick={this.handleEdit}>
                                 Done With Change!
-                                </button>
-                            <button type="submit" onClick={this.handleRemove}>
-                                Delete Medical Bill
+                                </button> */}
+
+                    <div className="EditMedical-title">
+                        <h1 >Delete This Medical Bill?</h1>
+                        <p className="editMedicalBill-p">If you want to edit your medical bill, simply delete it and re-submit it. If you simply want to delete it, press the "Delete Medical Bill" button below.</p>
+                    </div>
+                    <h3>Hospital Name: {userProcedure.hospital_name}</h3>
+                    <h3>Hospital Adress: {userProcedure.hospital_address}</h3>
+                    <h3>Procedure Name: {userProcedure.name_of_procedure}</h3>
+                    <h3>Cost Of Procedure: ${userProcedure.cost}</h3>
+                    <h3>Date Of Procedure: {userProcedure.date_of_procedure}</h3>
+                    <button className="EditMedSubmit" type="submit" onClick={this.handleRemove}>
+                        Delete Medical Bill
                             </button>
-                        </div>
-                    </form>
-                    {/* <h1>EDIT MEDICAL BILL PAGE</h1>
-                    <h2>{userProcedure.hospital_name}</h2>
-                    <h2>{userProcedure.hospital_address}</h2>
-                    <h2>{userProcedure.name_of_procedure}</h2>
-                    <h2>{userProcedure.cost}</h2>
-                    <h2>{userProcedure.date_of_procedure}</h2> */}
                 </div>
+                //     </form>
+                // </div>
             );
         } else {
             return (

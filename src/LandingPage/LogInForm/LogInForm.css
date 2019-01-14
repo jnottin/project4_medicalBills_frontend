@@ -1,0 +1,15 @@
+.signUpInput {
+    margin-bottom: 20px;
+}
+    
+.signUpSubmit {
+    margin-bottom: 20px;  
+}
+
+.SignUp-title {
+    text-shadow: 2px 2px 4px #000000;
+    padding-top: 0;
+    background-color: #4d5466;
+    border: 3px outset white;
+    margin-top: 0;
+}

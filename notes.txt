@@ -1,23 +1,24 @@
 ****Problem on Map.js page index.js:1446 You have included the Google Maps JavaScript API multiple times on this page. This may cause unexpected errors.
-***** Averagemethod needs to work
-****ON CLOSE INFOWINDOW, updates to current location, i think i need e.preventDefault
+
 
 FUNCT PROBLEMS:
-    -Hospitals probably needs to be connected to procedures now....if not no easy way to edit procedure and edit price in hospital model
-    -Sorting Hospital Bills by Date
-    -GET RID OF ERRORS - ex googleapi error
-    -SEARCH ON MAP - only works after second time pressing enter
+    1) 
+        -Make Delete when click on User Bill
+        -Accordian closes/opens after two clicks
+        -SIGN UP USER TAKEN - needs to show alert that that username is taken
+        -Make edit bills page
+        -Protected Routes, pass props?
 
+    2)
+        -Sorting Hospital Bills by Date
+        -Could condense avg calc on hospital list page
 
 CSS PROBLEMS:
-    -TITLE/SORT BY LOWEST PRICE - need to be centered correctly
-    -PROCEDURE PER HOSP - bullets need to be given br so they are forced to next line
 
 
 AUTH:
     -SIGN UP USER TAKEN - needs to show alert that that username is taken
-    -Make hospital page per user
-    -
+
 
 ADD ONS: 
     -FIGURE OUT WHAT MAKES PARENT / CHILD COMP, PARENT = HospList Child = Map, Get Markers to inflate when list item is hovered
