@@ -180,7 +180,7 @@ class EditMedicalBill extends Component {
 
                     <div className="EditMedical-title">
                         <h1 >Delete This Medical Bill?</h1>
-                        <p className="editMedicalBill-p">If you want to edit your medical bill, simply delete it and re-submit it. If you simply want to delete it, press the "Delete Medical Bill" button below.</p>
+                        <p className="editMedicalBill-p">If you want to edit your medical bill, simply delete it and re-submit it.</p>
                     </div>
                     <h3>Hospital Name: {userProcedure.hospital_name}</h3>
                     <h3>Hospital Adress: {userProcedure.hospital_address}</h3>

@@ -69,7 +69,7 @@ class UserMedicalBills extends Component {
                 <div className="total-content" >
                     <div className="userPageTitle">
                         <h1>User Medical Bills</h1>
-                        <h2>Click on any medical bill below to go to the Edit or Delete Page</h2>
+                        <h2>Click on any medical bill below to be able to Delete it or Delete and Re-Submit it.</h2>
                     </div>
                     < ReactTable
                         className="-striped -highlight table"
