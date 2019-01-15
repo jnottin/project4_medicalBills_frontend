@@ -139,32 +139,7 @@ class Home extends Component {
     const hospitalsProp = this.state.hospitals
     function sortHospByLowestCost() {
       hospitalsProp.sort(function (a, b) {
-        // return (a.selectedProcedureSort === undefined) - (b.selectedProcedureSort === undefined) || +(a.selectedProcedureSort > b.selectedProcedureSort) || -(a.selectedProcedureSort < b.selectedProcedureSort);
-
-        if (selectedProcedureSort === 'avg_appendectomy_cost') {
-          return (a.avg_appendectomy_cost === undefined) - (b.avg_appendectomy_cost === undefined) || +(a.avg_appendectomy_cost > b.avg_appendectomy_cost) || -(a.avg_appendectomy_cost < b.avg_appendectomy_cost);
-        } else if (selectedProcedureSort === 'avg_breast_biopsy_cost') {
-          return (a.avg_breast_biopsy_cost === undefined) - (b.avg_breast_biopsy_cost === undefined) || +(a.avg_breast_biopsy_cost > b.avg_breast_biopsy_cost) || -(a.avg_breast_biopsy_cost < b.avg_breast_biopsy_cost);
-        } else if (selectedProcedureSort === 'avg_carotid_endarterectomy_cost') {
-          return (a.avg_carotid_endarterectomy_cost === undefined) - (b.avg_carotid_endarterectomy_cost === undefined) || +(a.avg_carotid_endarterectomy_cost > b.avg_carotid_endarterectomy_cost) || -(a.avg_carotid_endarterectomy_cost < b.avg_carotid_endarterectomy_cost);
-        } else if (selectedProcedureSort === 'avg_cataract_surgery_cost') {
-          return (a.avg_cataract_surgery_cost === undefined) - (b.avg_cataract_surgery_cost === undefined) || +(a.avg_cataract_surgery_cost > b.avg_cataract_surgery_cost) || -(a.avg_cataract_surgery_cost < b.avg_cataract_surgery_cost);
-        } else if (selectedProcedureSort === 'avg_cesarean_section_cost') {
-          return (a.avg_cesarean_section_cost === undefined) - (b.avg_cesarean_section_cost === undefined) || +(a.avg_cesarean_section_cost > b.avg_cesarean_section_cost) || -(a.avg_cesarean_section_cost < b.avg_cesarean_section_cost);
-        } else if (selectedProcedureSort === 'avg_coronary_artery_bypass_cost') {
-          return (a.avg_coronary_artery_bypass_cost === undefined) - (b.avg_coronary_artery_bypass_cost === undefined) || +(a.avg_coronary_artery_bypass_cost > b.avg_coronary_artery_bypass_cost) || -(a.avg_coronary_artery_bypass_cost < b.avg_coronary_artery_bypass_cost);
-        } else if (selectedProcedureSort === 'avg_debridement_of_wound_cost') {
-          return (a.avg_debridement_of_wound_cost === undefined) - (b.avg_debridement_of_wound_cost === undefined) || +(a.avg_debridement_of_wound_cost > b.avg_debridement_of_wound_cost) || -(a.avg_debridement_of_wound_cost < b.avg_debridement_of_wound_cost);
-        } else if (selectedProcedureSort === 'avg_free_skin_graft_cost') {
-          return (a.avg_free_skin_graft_cost === undefined) - (b.avg_free_skin_graft_cost === undefined) || +(a.avg_free_skin_graft_cost > b.avg_free_skin_graft_cost) || -(a.avg_free_skin_graft_cost < b.avg_free_skin_graft_cost);
-        } else if (selectedProcedureSort === 'avg_spinal_fusion_cost') {
-          return (a.avg_spinal_fusion_cost === undefined) - (b.avg_spinal_fusion_cost === undefined) || +(a.avg_spinal_fusion_cost > b.avg_spinal_fusion_cost) || -(a.avg_spinal_fusion_cost < b.avg_spinal_fusion_cost);
-        } else if (selectedProcedureSort === 'avg_total_hip_replacement_cost') {
-          return (a.avg_total_hip_replacement_cost === undefined) - (b.avg_total_hip_replacement_cost === undefined) || +(a.avg_total_hip_replacement_cost > b.avg_total_hip_replacement_cost) || -(a.avg_total_hip_replacement_cost < b.avg_total_hip_replacement_cost);
-        } else {
-          console.log("error!!!!")
-          return null
-        }
+        return (a[selectedProcedureSort] === undefined) - (b[selectedProcedureSort] === undefined) || +(a[selectedProcedureSort] > b[selectedProcedureSort]) || -(a[selectedProcedureSort] < b[selectedProcedureSort]);
       });
     }
     sortHospByLowestCost()
