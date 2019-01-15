@@ -3,11 +3,10 @@
 
 FUNCT PROBLEMS:
     1) 
-        -Make Delete when click on User Bill
+        -When user deletes all procedures from hospital, hospital should be deleted. How can I work around seed data info?
         -Accordian closes/opens after two clicks
-        -SIGN UP USER TAKEN - needs to show alert that that username is taken
         -Make edit bills page
-        -Protected Routes, pass props?
+        -Protected Routes, pass props? (edit bills page)
 
     2)
         -Sorting Hospital Bills by Date
