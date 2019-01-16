@@ -173,52 +173,10 @@ class Home extends Component {
               </select>
             </div>
             <div className="searchMap search-drpdwn-item">
-              {/* <PlacesAutocomplete
-                value={this.state.geoAddress}
-                onChange={this.handleChange}
-                onSelect={this.handleSelect}
-                searchOptions={searchOptions}
-              >
-                {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                  <div>
-                    <input
-                      {...getInputProps({
-                        placeholder: 'Search Places ...',
-                        className: 'location-search-input',
-                      })}
-                    />
-                    <div className="autocomplete-dropdown-container">
-                      {loading && <div>Loading...</div>}
-                      {suggestions.map(suggestion => {
-                        const className = suggestion.active
-                          ? 'suggestion-item--active'
-                          : 'suggestion-item';
-                        const style = suggestion.active
-                          ? { backgroundColor: '#424857' }
-                          : { backgroundColor: '#636c83' };
-
-                        return (
-                          <div
-                            {...getSuggestionItemProps(suggestion, {
-                              className,
-                              style,
-                            })}
-                          >
-                            <div>{suggestion.formattedSuggestion.mainText}</div>
-                            <div>{suggestion.formattedSuggestion.secondaryText}</div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-              </PlacesAutocomplete> */}
-
               <form onSubmit={this.setMapCenterFromLocation}>
                 <label>
                   Search For Places On The Map: </label>
                 <input type="text" ref={el => this.location = el} />
-                {/* <input type="text" value={this.state.location} onChange={this.handleInputChange} /> */}
                 <input className="search-submit-btn" type="submit" value="Submit" />
               </form>
             </div>
