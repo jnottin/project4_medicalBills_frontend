@@ -14,7 +14,7 @@ Medi-Share is a price sharing app to help people who are not insured find the be
 - Users can sort the hospitals based on the lowest price for the particular procedure they need to have.
 
 Picture of Project: Home Page
-![Link to Picture of Project: Home Page](https://i.imgur.com/3zrow9N.png)
+![Link to Picture of Project: Home Page](https://i.imgur.com/Z6orsY4.png)
 
 Picture of Project: Search Hospitals / Map
 ![Link to Picture of Project: Search Hospitals / Map](https://i.imgur.com/cR0zcZR.png)
