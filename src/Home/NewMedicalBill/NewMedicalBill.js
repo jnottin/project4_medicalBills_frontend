@@ -4,18 +4,18 @@ import "./NewMedicalBill.css";
 import { Redirect } from 'react-router'
 import PlacesAutocomplete, {
     geocodeByAddress,
-    getLatLng,
+    getLatLng
 } from 'react-places-autocomplete';
 
 const toggleBackendLink = (process.env.NODE_ENV === "development") ? process.env.REACT_APP_DEVELOPMENT : process.env.REACT_APP_PRODUCTION
 
-const google = window.google;
+// const google = window.google;
 
-const searchOptions = {
-    location: new google.maps.LatLng(38.8885, -77.0931),
-    radius: 2000,
-    // types: ['address']
-}
+// const searchOptions = {
+//     location: new google.maps.LatLng(38.8885, -77.0931),
+//     radius: 2000,
+//     // types: ['address']
+// }
 
 class NewMedicalBill extends Component {
     constructor(props) {
@@ -126,7 +126,7 @@ class NewMedicalBill extends Component {
                     value={this.state.geoAddress}
                     onChange={this.handleChange}
                     onSelect={this.handleSelect}
-                    searchOptions={searchOptions}
+                // searchOptions={searchOptions}
                 >
                     {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                         <div>
