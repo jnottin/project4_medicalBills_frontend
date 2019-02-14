@@ -6,6 +6,7 @@ import PlacesAutocomplete, {
     geocodeByAddress,
     getLatLng
 } from 'react-places-autocomplete';
+import { GoogleApiWrapper } from 'google-maps-react';
 
 const toggleBackendLink = (process.env.NODE_ENV === "development") ? process.env.REACT_APP_DEVELOPMENT : process.env.REACT_APP_PRODUCTION
 
@@ -209,4 +210,8 @@ class NewMedicalBill extends Component {
     }
 }
 
-export default NewMedicalBill;
+// export default NewMedicalBill;
+
+export default GoogleApiWrapper({
+    apiKey: 'AIzaSyC2KMba-R4OMF2ROiKGpYGiXBpjyWFNV-4'
+})(NewMedicalBill);
