@@ -11,29 +11,13 @@ class HospitalList extends Component {
         this.OpenAccordion = this.OpenAccordion.bind(this);
     }
 
-    componentDidMount() {
-
-
-    }
-
-    OpenAccordion() {
-        console.log('1')
-        var acc = document.getElementsByClassName("accordion");
-        for (var i = 0; i < acc.length; i++) {
-            console.log('2')
-            acc[i].addEventListener("click", function () {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    console.log('3')
-                    panel.style.maxHeight = null;
-                } else {
-                    console.log('4')
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                }
-            });
+    OpenAccordion(e) {
+        var panel = e.target.nextElementSibling
+        if (panel.style.maxHeight) {
+            panel.style.maxHeight = null;
+        } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
         }
-
     }
 
 
@@ -46,8 +30,8 @@ class HospitalList extends Component {
                 <div key={hospital._id} className="specific-hospital">
                     <h3>({index.toString()}) - {hospital.name}</h3>
                     <h4 className="hospital-address">Address: {hospital.address}</h4>
-                    <button className="accordion" onClick={this.OpenAccordion}>See Average Prices Per Procedure</button>
-                    <div className="panel">
+                    <button className="accordion" onClick={(e) => this.OpenAccordion(e)}>See Average Prices Per Procedure</button>
+                    <div className="panel" id={hospital._id}>
                         <ul className="procedure_items">
                             <li className="procedure_item">Appendectomy Cost: ${hospital.avg_appendectomy_cost}</li>
                             <li className="procedure_item">Breast Biopsy Cost: ${hospital.avg_breast_biopsy_cost}</li>
@@ -62,6 +46,33 @@ class HospitalList extends Component {
                         </ul>
                     </div>
                 </div>
+                // <div key={hospital._id} >
+                //     <Accordion className="specific-hospital">
+                //         <AccordionItem>
+                //             <AccordionItemTitle>
+                //                 <h3>({index.toString()}) - {hospital.name}</h3>
+                //                 <h4 className="hospital-address">Address: {hospital.address}</h4>
+                //             </AccordionItemTitle>
+                //             <AccordionItemBody>
+                //                 <div className="panel">
+                //                     <ul className="procedure_items">
+                //                         <li className="procedure_item">Appendectomy Cost: ${hospital.avg_appendectomy_cost}</li>
+                //                         <li className="procedure_item">Breast Biopsy Cost: ${hospital.avg_breast_biopsy_cost}</li>
+                //                         <li className="procedure_item">Carotid Endarterectomy Cost: ${hospital.avg_carotid_endarterectomy_cost}</li>
+                //                         <li className="procedure_item">Cataract Surgery Cost: ${hospital.avg_cataract_surgery_cost}</li>
+                //                         <li className="procedure_item">Cesarean Section Cost: ${hospital.avg_cesarean_section_cost}</li>
+                //                         <li className="procedure_item">Coronary Artery Bypass Cost: ${hospital.avg_coronary_artery_bypass_cost}</li>
+                //                         <li className="procedure_item">Debridement of Wound Cost: ${hospital.avg_debridement_of_wound_cost}</li>
+                //                         <li className="procedure_item">Free Skin Graft Cost: ${hospital.avg_free_skin_graft_cost}</li>
+                //                         <li className="procedure_item">Spinal Fusion Cost: ${hospital.avg_spinal_fusion_cost}</li>
+                //                         <li className="procedure_item">Total Hip Replacement Cost: ${hospital.avg_total_hip_replacement_cost}</li>
+                //                     </ul>
+                //                 </div>
+                //             </AccordionItemBody>
+                //         </AccordionItem>
+                //         <button className="accordion" onClick={this.OpenAccordion}>See Average Prices Per Procedure</button>
+                //     </Accordion>
+                // </div>
             );
         });
 
